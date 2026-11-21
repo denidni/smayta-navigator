@@ -3,6 +3,7 @@ import { Image, Text, YStack, XStack, Separator, useTheme } from 'tamagui';
 import { titleize } from 'inflected';
 import { SectionHeader, SectionInfoLine } from '../components/Content';
 
+import { translate } from '../utils/localize';
 const EntityScreen = ({ route }) => {
     const theme = useTheme();
     const navigation = useNavigation();
@@ -19,21 +20,21 @@ const EntityScreen = ({ route }) => {
                 <Image source={{ uri: `data:image/png;base64,${entity.tracking_number.qr_code}` }} bg='$white' padding='$1' width={80} height={80} borderRadius='$1' />
                 <Image source={{ uri: `data:image/png;base64,${entity.tracking_number.barcode}` }} bg='$white' padding='$1' width={190} height={80} borderRadius='$1' />
             </XStack>
-            <SectionHeader title='Details' />
+            <SectionHeader title={translate('EntityScreen.details')} />
             <YStack py='$4'>
-                <SectionInfoLine title='ID' value={entity.id} />
+                <SectionInfoLine title={translate('EntityScreen.id')} value={entity.id} />
                 <Separator />
-                <SectionInfoLine title='Internal ID' value={entity.internal_id} />
+                <SectionInfoLine title={translate('EntityScreen.internalId')} value={entity.internal_id} />
                 <Separator />
-                <SectionInfoLine title='Tracking Number' value={entity.tracking_number.tracking_number} />
+                <SectionInfoLine title={translate('EntityScreen.trackingNumber')} value={entity.tracking_number.tracking_number} />
                 <Separator />
-                <SectionInfoLine title='SKU' value={entity.sku ?? 'N/A'} />
+                <SectionInfoLine title={translate('EntityScreen.sku')} value={entity.sku ?? 'N/A'} />
                 <Separator />
-                <SectionInfoLine title='Type' value={titleize(entity.type)} />
+                <SectionInfoLine title={translate('EntityScreen.type')} value={titleize(entity.type)} />
                 <Separator />
-                <SectionInfoLine title='Dimensions (L x W x H)' value={`${entity.height ?? 0} x ${entity.width ?? 0} x ${entity.height ?? 0} ${entity.dimensions_unit}`} />
+                <SectionInfoLine title={translate('EntityScreen.dimensionsLXWXH')} value={`${entity.height ?? 0} x ${entity.width ?? 0} x ${entity.height ?? 0} ${entity.dimensions_unit}`} />
                 <Separator />
-                <SectionInfoLine title='Weight' value={`${entity.weight ?? 0} ${entity.weight_unit}`} />
+                <SectionInfoLine title={translate('EntityScreen.weight')} value={`${entity.weight ?? 0} ${entity.weight_unit}`} />
             </YStack>
         </YStack>
     );

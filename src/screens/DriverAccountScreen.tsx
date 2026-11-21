@@ -14,6 +14,7 @@ import useAppTheme from '../hooks/use-app-theme';
 import DeviceInfo from 'react-native-device-info';
 import storage from '../utils/storage';
 
+import { translate } from '../utils/localize';
 const DriverAccountScreen = () => {
     const theme = useTheme();
     const navigation = useNavigation();
@@ -243,7 +244,7 @@ const DriverAccountScreen = () => {
             onPress: () => navigation.navigate('EditAccountProperty', { property: { name: t('AccountScreen.name'), key: 'name', component: 'input' } }),
         },
         {
-            title: 'Language',
+            title: translate('DriverAccountScreen.language'),
             rightComponent: (
                 <Text color='$textSecondary' opacity={0.5}>
                     {language.native}
@@ -281,7 +282,7 @@ const DriverAccountScreen = () => {
         },
         // {
         //     title: t('AccountScreen.tracking'),
-        //     rightComponent: <Text color='$textSecondary'>Enabled</Text>, // Replace with dynamic value if available
+        //     rightComponent: <Text color='$textSecondary'>{translate('DriverAccountScreen.enabled')}</Text>, // Replace with dynamic value if available
         //     onPress: () => navigation.navigate('TrackingSettings'),
         // },
     ];

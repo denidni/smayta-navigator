@@ -3,6 +3,7 @@ import { View, Text, Button, YStack, XStack, useTheme } from 'tamagui';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faTriangleExclamation, faCheck } from '@fortawesome/free-solid-svg-icons';
 
+import { translate } from '../utils/localize';
 interface AlertPromptBoxProps {
     show: boolean;
     prompt: string;
@@ -29,7 +30,7 @@ const AlertPromptBox: React.FC<AlertPromptBoxProps> = ({
     const theme = useTheme();
     const handlePress = () => {
         Alert.alert(confirmTitle, confirmMessage, [
-            { text: 'Cancel', style: 'cancel' },
+            { text: translate('AlertPromptBox.cancel'), style: 'cancel' },
             { text: confirmAlertButtonText, onPress: () => onConfirm() },
         ]);
     };

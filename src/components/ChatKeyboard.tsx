@@ -7,6 +7,7 @@ import { faCamera, faPlus, faPaperPlane } from '@fortawesome/free-solid-svg-icon
 import useAppTheme from '../hooks/use-app-theme';
 import CameraCapture from './CameraCapture';
 
+import { translate } from '../utils/localize';
 const INPUT_MIN_HEIGHT = 40;
 const INPUT_MAX_HEIGHT = 120;
 const ChatKeyboard = ({ onSend, onAttach, onCamera, onFocus, onBlur }) => {
@@ -69,7 +70,7 @@ const ChatKeyboard = ({ onSend, onAttach, onCamera, onFocus, onBlur }) => {
                             maxHeight={INPUT_MAX_HEIGHT}
                             textAlignVertical='top'
                             lineHeight={20}
-                            placeholder='Type a message'
+                            placeholder={translate('ChatKeyboard.typeAMessage')}
                             multiline
                             backgroundColor='$surface'
                             borderColor='$borderColor'

@@ -9,6 +9,7 @@ import { OtpInput } from 'react-native-otp-entry';
 import { useAuth } from '../contexts/AuthContext';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { translate } from '../utils/localize';
 const CreateAccountVerifyScreen = ({ route }) => {
     const navigation = useNavigation();
     const theme = useTheme();
@@ -53,7 +54,7 @@ const CreateAccountVerifyScreen = ({ route }) => {
                 <Button onPress={() => handleVerifyCode(code)} bg='$primary' width='100%' opacity={isVerifyingCode ? 0.75 : 1} disabled={isVerifyingCode} rounded>
                     <Button.Icon>{isVerifyingCode ? <Spinner color='$white' /> : <FontAwesomeIcon icon={faCheck} color={theme.white.val} />}</Button.Icon>
                     <Button.Text color='$white' fontWeight='bold'>
-                        Verify Code
+                        {translate('CreateAccountVerifyScreen.verifyCode')}
                     </Button.Text>
                 </Button>
                 <Button onPress={handleRetry} bg='$secondary' width='100%' rounded>
@@ -61,7 +62,7 @@ const CreateAccountVerifyScreen = ({ route }) => {
                         <FontAwesomeIcon icon={faArrowRotateRight} color={theme['gray-500'].val} />
                     </Button.Icon>
                     <Button.Text color='$gray-500' fontWeight='bold'>
-                        Retry
+                        {translate('CreateAccountVerifyScreen.retry')}
                     </Button.Text>
                 </Button>
             </YStack>

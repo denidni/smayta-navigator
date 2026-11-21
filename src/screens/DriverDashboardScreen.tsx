@@ -7,6 +7,7 @@ import { get } from '../utils';
 import OdometerNumber from '../components/OdometerNumber';
 import useAppTheme from '../hooks/use-app-theme';
 
+import { translate } from '../utils/localize';
 const WidgetContainer = ({ px = '$4', py = '$4', children, ...props }) => {
     const { isDarkMode } = useAppTheme();
     return (
@@ -58,7 +59,7 @@ const DriverDashboardScreen = () => {
                     <WidgetContainer flex={1} alignItems='center' justifyContent='center'>
                         <YStack>
                             <Text color='$textPrimary' fontWeight='bold' mb='$2'>
-                                Active Orders
+                                {translate('DriverDashboardScreen.activeOrders')}
                             </Text>
                         </YStack>
                         <YStack>
@@ -68,7 +69,7 @@ const DriverDashboardScreen = () => {
                     <WidgetContainer flex={1} alignItems='center' justifyContent='center'>
                         <YStack>
                             <Text color='$textPrimary' fontWeight='bold' mb='$2'>
-                                Speed
+                                {translate('DriverDashboardScreen.speed')}
                             </Text>
                         </YStack>
                         <YStack>

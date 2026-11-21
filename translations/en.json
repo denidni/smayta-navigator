@@ -73,7 +73,10 @@
         "unconfiguredApp": "Looks like you haven't properly configured your app.",
         "envMissing": "is missing from environment!"
     },
-    "DriverReportScreen": {},
+    "DriverReportScreen": {
+        "issues": "Issues",
+        "fuelReports": "Fuel Reports"
+    },
     "LocationPermissionScreen": {
         "enableLocationServices": "Location Data Disclosure",
         "enableLocationPrompt": "Smayta Transporte collects precise location data to enable real-time driver tracking and order progress updates for your organization’s dispatchers and operations team, even when the app is closed or not in use. Location is collected while you are online and is sent securely to Smayta.",
@@ -84,5 +87,324 @@
         "permissionDeniedPrompt": "Location access is required before you can sign in. Would you like to allow access now?",
         "locationBlockedPrompt": "Location access has been blocked. Please open Settings and enable it to continue.",
         "goToSettings": "Go to Settings"
+    },
+    "AdhocOrderCard": {
+        "acceptOrder": "Accept Order",
+        "dismissOrder": "Dismiss Order",
+        "acceptingAndAssigningOrder": "Accepting and assigning order...",
+        "pickupDestination": "Pickup Destination",
+        "cancel": "Cancel",
+        "accept": "Accept",
+        "ok": "OK",
+        "acceptAdHocOrder": "Accept Ad-Hoc order?",
+        "dismissAdHocOrder": "Dismiss Ad-Hoc order?"
+    },
+    "AlertPromptBox": {
+        "cancel": "Cancel"
+    },
+    "Buttons": {
+        "continueWithPhone": "Continue with Phone"
+    },
+    "CameraCapture": {
+        "loadingCameraOrAwaitingPermission": "Loading camera or awaiting permission...",
+        "gallery": "Gallery",
+        "snap": "Snap",
+        "done": "Done",
+        "close": "Close",
+        "unableToSelectPhotos": "Unable to select photos.",
+        "photoCaptured": "Photo captured."
+    },
+    "ChatKeyboard": {
+        "typeAMessage": "Type a message"
+    },
+    "ChatParticipants": {
+        "noParticipants": "No participants"
+    },
+    "Comment": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "reply": "Reply",
+        "edit": "Edit",
+        "delete": "Delete",
+        "publishReply": "Publish Reply",
+        "writeAReply": "Write a reply...",
+        "deleteComment": "Delete Comment"
+    },
+    "CommentThread": {
+        "publishComment": "Publish Comment",
+        "writeAComment": "Write a comment...",
+        "invalidComment": "Invalid Comment"
+    },
+    "CurrentDestinationSelect": {
+        "selectDestination": "Select destination"
+    },
+    "DestinationChangedAlert": {
+        "waypointCompleted": "Waypoint Completed",
+        "activityForWaypoint": "Activity for waypoint",
+        "yourCurrentDestinationHasChangedTo": "Your current destination has changed to",
+        "continue": "Continue"
+    },
+    "FuelReportForm": {
+        "status": "Status",
+        "odometer": "Odometer",
+        "volume": "Volume",
+        "cost": "Cost",
+        "selectFuelReportStatus": "Select Fuel Report Status",
+        "inputYourCurrentOdometer": "Input your current odometer...",
+        "inputFuelVolume": "Input fuel volume...",
+        "inputFuelCosts": "Input fuel costs..."
+    },
+    "InstanceLinkHandler": {
+        "instanceLinkWasSuccessful": "Instance link was successful!"
+    },
+    "IssueForm": {
+        "issueType": "Issue Type",
+        "issueCategory": "Issue Category",
+        "issuePriority": "Issue Priority",
+        "issueStatus": "Issue Status",
+        "issueReport": "Issue Report",
+        "selectIssueType": "Select Issue Type",
+        "selectIssueCategory": "Select Issue Category",
+        "selectIssuePriority": "Select Issue Priority",
+        "selectIssueStatus": "Select Issue Status",
+        "typeYourIssueReport": "Type your issue report..."
+    },
+    "LocationPicker": {
+        "addNewLocation": "Add New Location"
+    },
+    "MoneyInput": {
+        "searchCurrencies": "Search currencies"
+    },
+    "MultipleCustomerAvatars": {
+        "noCustomers": "No customers"
+    },
+    "OrderActivitySelect": {
+        "requiresProofOfDelivery": "Requires proof of delivery",
+        "selectActivity": "Select activity"
+    },
+    "OrderCard": {
+        "nA": "N/A"
+    },
+    "OrderCustomerCard": {
+        "call": "Call",
+        "email": "Email",
+        "chat": "Chat"
+    },
+    "OrderDocumentFiles": {
+        "noDocumentsOrFiles": "No Documents or Files.",
+        "view": "View",
+        "download": "Download",
+        "downloadComplete": "Download Complete",
+        "downloadFailed": "Download Failed",
+        "error": "Error"
+    },
+    "OrderPayloadEntities": {
+        "emptyPayload": "Empty Payload."
+    },
+    "OrderProofOfDelivery": {
+        "noProofOfDeliveryCaptured": "No Proof of Delivery Captured."
+    },
+    "PastOrderCard": {
+        "currentDestination": "Current Destination"
+    },
+    "PhoneInput": {
+        "enterPhoneNumber": "Enter phone number",
+        "searchCountry": "Search country"
+    },
+    "QrCodeScanner": {
+        "noCameraAvailable": "No camera available"
+    },
+    "UnitInput": {
+        "searchUnit": "Search unit"
+    },
+    "LocationContext": {
+        "allowFleetbaseNavigatorToAccessYour": "Allow Smayta Transporte to access your location",
+        "fleetbaseNavigatorCollectsPreciseLocationData": "Smayta Transporte collects precise location data to enable real-time driver tracking and order progress updates for your organization’s dispatchers and operations team, even when the app is closed or not in use. Location is collected while you are online and is sent securely to Smayta."
+    },
+    "Useoauth": {
+        "appleSignInIsNotSupported": "Apple Sign-In is not supported on this device",
+        "appleSignInFailedMissingToken": "Apple Sign-In failed: Missing token or authorization code."
+    },
+    "DriverNavigator": {
+        "navigator": "Smayta Transporte",
+        "createANewFuelReport": "Create a new Fuel Report",
+        "createANewIssue": "Create a new Issue",
+        "dashboardTab": "Dash",
+        "ordersTab": "Orders",
+        "reportsTab": "Reports",
+        "chatTab": "Chat",
+        "accountTab": "Account"
+    },
+    "CoreStack": {
+        "connectionConfig": "Connection Config"
+    },
+    "OrderStack": {
+        "orderHistory": "Order History"
+    },
+    "ChatHomeScreen": {
+        "chats": "Chats"
+    },
+    "ChatParticipantsScreen": {
+        "remove": "Remove",
+        "participants": "Participants",
+        "addParticipant": "Add Participant",
+        "selectParticipant": "Select Participant",
+        "cancel": "Cancel",
+        "removeParticipant": "Remove Participant",
+        "confirmation": "Confirmation"
+    },
+    "CreateAccountScreen": {
+        "createAccount": "Create Account",
+        "sendVerificationCode": "Send Verification Code",
+        "haveAnAccountAlreadyLogin": "Have an account already? Login",
+        "enterYourName": "Enter your name",
+        "invalidPhoneNumberProvided": "Invalid phone number provided."
+    },
+    "CreateAccountVerifyScreen": {
+        "verifyCode": "Verify Code",
+        "retry": "Retry"
+    },
+    "CreateChatChannelScreen": {
+        "unselect": "Unselect",
+        "select": "Select",
+        "createNewChat": "Create new Chat",
+        "channelName": "Channel Name",
+        "inputChatChannelName": "Input chat channel name...",
+        "chatChannelNameIsRequired": "Chat channel name is required."
+    },
+    "DriverAccountScreen": {
+        "enabled": "Enabled",
+        "language": "Language"
+    },
+    "DriverDashboardScreen": {
+        "activeOrders": "Active Orders",
+        "speed": "Speed"
+    },
+    "DriverProfileScreen": {
+        "account": "Account",
+        "organization": "Organization"
+    },
+    "EditAccountPropertyScreen": {
+        "save": "Save"
+    },
+    "EditLocationCoordScreen": {
+        "savePosition": "Save Position",
+        "reset": "Reset"
+    },
+    "EditLocationScreen": {
+        "address": "Address",
+        "locationType": "Location Type",
+        "addressDetails": "Address Details",
+        "addAdditionalAddressDetails": "Add additional address details.",
+        "addressLabelOrName": "Address label or name",
+        "streetAddressOrPOBox": "Street address or P.O. Box",
+        "aptSuiteUnitBuildingFloorEtc": "Apt, suite, unit, building, floor, etc.",
+        "optional": "Optional",
+        "neighborhood": "Neighborhood",
+        "cityOrTown": "City or town",
+        "postalOrZipCode": "Postal or zip code",
+        "additionalInstructionsForTheCourier": "Additional instructions for the courier",
+        "whereExactlyShouldWeMeetYou": "Where exactly should we meet you?",
+        "makeDefaultAddress": "Make Default Address",
+        "deleteAddress": "Delete Address",
+        "saveAddress": "Save Address",
+        "apartment": "Apartment",
+        "house": "House",
+        "office": "Office",
+        "hotel": "Hotel",
+        "hospital": "Hospital",
+        "school": "School",
+        "other": "Other",
+        "addressSaved": "Address saved.",
+        "unableToSelectLocationType": "Unable to select location type."
+    },
+    "EntityScreen": {
+        "details": "Details",
+        "id": "ID",
+        "internalId": "Internal ID",
+        "trackingNumber": "Tracking Number",
+        "sku": "SKU",
+        "type": "Type",
+        "dimensionsLXWXH": "Dimensions (L x W x H)",
+        "weight": "Weight"
+    },
+    "FuelReportScreen": {
+        "deletingFuelReport": "Deleting Fuel Report...",
+        "cancel": "Cancel",
+        "deleteFuelReport": "Delete Fuel Report",
+        "confirmDeletion": "Confirm Deletion"
+    },
+    "InstanceLinkScreen": {
+        "fleetbaseHost": "FLEETBASE HOST",
+        "fleetbaseKey": "FLEETBASE KEY",
+        "socketclusterHost": "SOCKETCLUSTER HOST",
+        "socketclusterPort": "SOCKETCLUSTER PORT",
+        "socketclusterSecure": "SOCKETCLUSTER SECURE",
+        "saveChanges": "Save Changes",
+        "reset": "Reset",
+        "inputHostOfFleetbaseInstance": "Input host of Fleetbase instance...",
+        "inputApiKeyForFleetbaseInstance": "Input API Key for Fleetbase instance...",
+        "inputSocketclusterHostForFleetbaseInstance": "Input SocketCluster host for Fleetbase instance...",
+        "inputSocketclusterPortForFleetbaseInstance": "Input SocketCluster port for Fleetbase instance...",
+        "instanceConnectionConfigSavedSuccessfully": "Instance connection config saved successfully.",
+        "instanceConnectionConfigResetSuccessfully": "Instance connection config reset successfully."
+    },
+    "IssueScreen": {
+        "deletingIssue": "Deleting Issue...",
+        "cancel": "Cancel",
+        "deleteIssue": "Delete Issue",
+        "confirmDeletion": "Confirm Deletion"
+    },
+    "OrderScreen": {
+        "acceptOrder": "Accept Order",
+        "dismissOrder": "Dismiss Order",
+        "startOrder": "Start Order",
+        "updateActivity": "Update Activity",
+        "startNavigation": "Start Navigation",
+        "orderInformation": "Order Information",
+        "id": "ID",
+        "internalId": "Internal ID",
+        "trackingNumber": "Tracking Number",
+        "proofOfDelivery": "Proof of Delivery",
+        "type": "Type",
+        "dateCreated": "Date Created",
+        "dateScheduled": "Date Scheduled",
+        "dateDispatched": "Date Dispatched",
+        "orderRoute": "Order Route",
+        "orderProgress": "Order Progress",
+        "currentDestination": "Current Destination",
+        "nextDestination": "Next Destination",
+        "totalDistance": "Total Distance",
+        "startTime": "Start Time",
+        "currentEta": "Current ETA",
+        "ect": "ECT",
+        "orderNotes": "Order Notes",
+        "orderProof": "Order Proof",
+        "orderPayload": "Order Payload",
+        "customer": "Customer",
+        "orderDocumentsFiles": "Order Documents & Files",
+        "orderComments": "Order Comments",
+        "continue": "Continue",
+        "yes": "Yes",
+        "cancel": "Cancel",
+        "accept": "Accept",
+        "ok": "OK",
+        "waypointCompleted": "Waypoint Completed",
+        "orderNotDispatchedYet": "Order Not Dispatched Yet",
+        "warning": "Warning!",
+        "acceptAdHocOrder": "Accept Ad-Hoc order?",
+        "dismissAdHocOrder": "Dismiss Ad-Hoc order?"
+    },
+    "PhoneLoginScreen": {
+        "loginViaSms": "Login via SMS",
+        "sendVerificationCode": "Send Verification Code",
+        "home": "Home",
+        "invalidPhoneNumberProvided": "Invalid phone number provided."
+    },
+    "PhoneLoginVerifyScreen": {
+        "verifyCode": "Verify Code",
+        "retry": "Retry",
+        "unableToSendSms": "Unable to send SMS.",
+        "yourVerificationCodeWasSentVia": "Your verification code was sent via"
     }
 }

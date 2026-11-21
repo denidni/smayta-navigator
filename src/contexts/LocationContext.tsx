@@ -9,6 +9,7 @@ import { useAuth } from './AuthContext';
 import useStorage from '../hooks/use-storage';
 import useFleetbase from '../hooks/use-fleetbase';
 
+import { translate } from '../utils/localize';
 const LocationContext = createContext({
     location: null,
     isTracking: false,
@@ -165,9 +166,8 @@ export const LocationProvider = ({ children }) => {
         BackgroundGeolocation.ready(
             {
                 backgroundPermissionRationale: {
-                    title: 'Allow Fleetbase Navigator to access your location',
-                    message:
-                        'Fleetbase Navigator collects precise location data to enable real-time driver tracking and order progress updates for your organization’s dispatchers and operations team, even when the app is closed or not in use. Location is collected while you are online and is sent securely to Fleetbase.',
+                    title: translate('LocationContext.allowFleetbaseNavigatorToAccessYour'),
+                    message: translate('LocationContext.fleetbaseNavigatorCollectsPreciseLocationData'),
                     positiveAction: 'Allow',
                     negativeAction: 'Deny',
                 },

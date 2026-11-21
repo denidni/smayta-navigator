@@ -9,6 +9,7 @@ import { Portal } from '@gorhom/portal';
 import { debounce } from '../utils';
 import unit from '../constants/Units';
 
+import { translate } from '../utils/localize';
 const getDefaultUnit = (type, defaultValue) => {
     if (typeof type === 'string' && type.startsWith('volume')) {
         return unit.volumes.find((x) => x.value === defaultValue) ? defaultValue : unit.volumes[0];
@@ -197,7 +198,7 @@ const UnitInput = ({
                     <YStack px='$2'>
                         <BottomSheetTextInput
                             ref={searchInputRef}
-                            placeholder='Search unit'
+                            placeholder={translate('UnitInput.searchUnit')}
                             onChangeText={setSearchTerm}
                             autoCapitalize='none'
                             autoComplete='off'

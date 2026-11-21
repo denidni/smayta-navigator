@@ -6,6 +6,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import LinearGradient from 'react-native-linear-gradient';
 import { useTheme } from 'tamagui';
 
+import { translate } from '../utils/localize';
 export const PhoneLoginButton = ({ onPress, ...props }) => {
     const theme = useTheme();
 
@@ -14,7 +15,7 @@ export const PhoneLoginButton = ({ onPress, ...props }) => {
             <Button.Icon>
                 <FontAwesomeIcon icon={faPhone} color={theme['$textPrimary'].val} />
             </Button.Icon>
-            <Button.Text color='$textPrimary'>Continue with Phone</Button.Text>
+            <Button.Text color='$textPrimary'>{translate('Buttons.continueWithPhone')}</Button.Text>
         </Button>
     );
 };

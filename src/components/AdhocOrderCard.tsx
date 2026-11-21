@@ -19,6 +19,7 @@ import LoadingText from './LoadingText';
 import LoadingOverlay from './LoadingOverlay';
 import Badge from './Badge';
 
+import { translate } from '../utils/localize';
 const INFO_FIELD_VALUE_MIN_HEIGHT = 30;
 export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
     const theme = useTheme();
@@ -44,13 +45,13 @@ export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
     }, [location, destination]);
 
     const handleAccept = useCallback(async () => {
-        Alert.alert('Accept Ad-Hoc order?', 'By accepting this ad-hoc order it will become assigned to you and the order will start immediatley.', [
+        Alert.alert(translate('AdhocOrderCard.acceptAdHocOrder'), 'By accepting this ad-hoc order it will become assigned to you and the order will start immediatley.', [
             {
-                text: 'Cancel',
+                text: translate('AdhocOrderCard.cancel'),
                 style: 'cancel',
             },
             {
-                text: 'Accept',
+                text: translate('AdhocOrderCard.accept'),
                 onPress: async () => {
                     setIsAccepting(true);
 
@@ -70,13 +71,13 @@ export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
     }, [order, setIsAccepting]);
 
     const handleDismiss = useCallback(() => {
-        Alert.alert('Dismiss Ad-Hoc order?', 'By dimissing this ad-hoc order it will no longer display as an available order.', [
+        Alert.alert(translate('AdhocOrderCard.dismissAdHocOrder'), 'By dimissing this ad-hoc order it will no longer display as an available order.', [
             {
-                text: 'Cancel',
+                text: translate('AdhocOrderCard.cancel'),
                 style: 'cancel',
             },
             {
-                text: 'OK',
+                text: translate('AdhocOrderCard.ok'),
                 onPress: () => {
                     if (typeof onDismiss === 'function') {
                         onDismiss(order);
@@ -88,7 +89,7 @@ export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
 
     return (
         <Pressable onPress={onPress}>
-            <LoadingOverlay isVisible={isAccepting} text='Accepting and assigning order...' />
+            <LoadingOverlay isVisible={isAccepting} text={translate('AdhocOrderCard.acceptingAndAssigningOrder')} />
             <YStack bg='$info' borderRadius='$4' borderWidth={1} borderColor='$infoBorder'>
                 <YStack height={150} borderBottomWidth={1} borderColor='$infoBorder'>
                     <LiveOrderRoute
@@ -139,7 +140,7 @@ export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
                             icon={faLocationDot}
                             iconColor={theme['$textPrimary'].val}
                             waypoint={destination.serialize()}
-                            title='Pickup Destination'
+                            title={translate('AdhocOrderCard.pickupDestination')}
                             titleStyle={{ fontWeight: 'bold', fontSize: 14, textTransform: 'uppercase' }}
                         />
                     </YStack>
@@ -147,7 +148,7 @@ export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
                         <YStack flex={1}>
                             <Button onPress={handleAccept} bg='$success' borderColor='$successBorder' borderWidth={1} disabled={isAccepting}>
                                 <Button.Icon>{isAccepting ? <Spinner color='$successText' /> : <FontAwesomeIcon icon={faCheck} color={theme['$successText'].val} />}</Button.Icon>
-                                <Button.Text color='$successText'>Accept Order</Button.Text>
+                                <Button.Text color='$successText'>{translate('AdhocOrderCard.acceptOrder')}</Button.Text>
                             </Button>
                         </YStack>
                         <YStack flex={1}>
@@ -155,7 +156,7 @@ export const AdhocOrderCard = ({ order, onPress, onAccept, onDismiss }) => {
                                 <Button.Icon>
                                     <FontAwesomeIcon icon={faBan} color={theme['$errorText'].val} />
                                 </Button.Icon>
-                                <Button.Text color='$errorText'>Dismiss Order</Button.Text>
+                                <Button.Text color='$errorText'>{translate('AdhocOrderCard.dismissOrder')}</Button.Text>
                             </Button>
                         </YStack>
                     </XStack>
