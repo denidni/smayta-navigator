@@ -56,7 +56,8 @@
         "schemeChanged": "Ahora en modo {{selectedScheme}}.",
         "languageChanged": "Ahora en {{selectedLanguage}}.",
         "photoChanged": "Foto de perfil cambiada.",
-        "photoRemoved": "Foto de perfil eliminada."
+        "photoRemoved": "Foto de perfil eliminada.",
+        "sourceCode": "Código fuente"
     },
     "ProfileScreen": {
         "organizationChanged": "Ahora en la organización {{selectedOrganization}}."

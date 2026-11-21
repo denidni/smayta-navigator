@@ -56,7 +56,8 @@
         "schemeChanged": "الوضع الحالي: {{selectedScheme}}.",
         "languageChanged": "اللغة الحالية: {{selectedLanguage}}.",
         "photoChanged": "تم تغيير صورة الملف الشخصي.",
-        "photoRemoved": "تم حذف صورة الملف الشخصي."
+        "photoRemoved": "تم حذف صورة الملف الشخصي.",
+        "sourceCode": "الشيفرة المصدرية"
     },
     "ProfileScreen": {
         "organizationChanged": "تم التبديل إلى مؤسسة {{selectedOrganization}}."
