@@ -511,7 +511,7 @@ const DriverNavigator = createBottomTabNavigator({
                     <XStack alignItems='center'>
                         <Image source={require('../../assets/navigator-icon-transparent.png')} style={{ width: 18, height: 18, marginRight: 5 }} />
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Navigator
+                            {config('APP_NAME', 'Navigator')}
                         </Text>
                     </XStack>
                     <Text color='$textSecondary' fontSize={8} ml={25}>

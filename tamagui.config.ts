@@ -14,6 +14,20 @@ const globalColors = {
 
 // Full Tailwind CSS Color Palette
 const colors = {
+    // Naranja de Smayta (docs/marca.md del repositorio smayta). El 500 es el del logo; los
+    // botones usan el 600, que con texto blanco cumple el contraste mínimo (5,2:1).
+    smayta: {
+        50: '#FDE8E3',
+        100: '#FAD1C7',
+        200: '#F6AA98',
+        300: '#F1785A',
+        400: '#ED512B',
+        500: '#E13B13',
+        600: '#CA3511',
+        700: '#A92C0E',
+        800: '#8D250C',
+        900: '#4B1406',
+    },
     gray: {
         50: '#f9fafb',
         100: '#f3f4f6',
@@ -236,6 +250,12 @@ export const themes = {
         primaryBorder: colors.orange[700],
         primaryText: 'white',
     }),
+    lightSmayta: createTheme({
+        ...lightBase,
+        primary: colors.smayta[600],
+        primaryBorder: colors.smayta[700],
+        primaryText: 'white',
+    }),
 
     // Dark mode themes
     darkBlue: createTheme({
@@ -267,6 +287,12 @@ export const themes = {
         primary: colors.orange[500],
         primaryBorder: colors.orange[600],
         primaryText: colors.orange[100],
+    }),
+    darkSmayta: createTheme({
+        ...darkBase,
+        primary: colors.smayta[600],
+        primaryBorder: colors.smayta[500],
+        primaryText: 'white',
     }),
 };
 
