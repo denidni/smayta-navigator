@@ -279,7 +279,15 @@
     },
     "DriverDashboardScreen": {
         "activeOrders": "Viajes en curso",
-        "speed": "Velocidad"
+        "speed": "Velocidad",
+        "tracking": "Seguimiento",
+        "yes": "Sí",
+        "no": "No",
+        "location": "Ubicación",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "heading": "Rumbo",
+        "altitude": "Altitud"
     },
     "DriverProfileScreen": {
         "account": "Cuenta",

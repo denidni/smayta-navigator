@@ -279,7 +279,15 @@
     },
     "DriverDashboardScreen": {
         "activeOrders": "الطلبات النشطة",
-        "speed": "السرعة"
+        "speed": "السرعة",
+        "tracking": "التتبع",
+        "yes": "نعم",
+        "no": "لا",
+        "location": "الموقع",
+        "latitude": "خط العرض",
+        "longitude": "خط الطول",
+        "heading": "الاتجاه",
+        "altitude": "الارتفاع"
     },
     "DriverProfileScreen": {
         "account": "الحساب",

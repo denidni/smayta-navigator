@@ -279,7 +279,15 @@
     },
     "DriverDashboardScreen": {
         "activeOrders": "Active Orders",
-        "speed": "Speed"
+        "speed": "Speed",
+        "tracking": "Tracking",
+        "yes": "Yes",
+        "no": "No",
+        "location": "Location",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "heading": "Heading",
+        "altitude": "Altitude"
     },
     "DriverProfileScreen": {
         "account": "Account",

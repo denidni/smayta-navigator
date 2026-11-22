@@ -279,7 +279,15 @@
     },
     "DriverDashboardScreen": {
         "activeOrders": "Courses en cours",
-        "speed": "Vitesse"
+        "speed": "Vitesse",
+        "tracking": "Suivi",
+        "yes": "Oui",
+        "no": "Non",
+        "location": "Position",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "heading": "Cap",
+        "altitude": "Altitude"
     },
     "DriverProfileScreen": {
         "account": "Compte",
