@@ -2,6 +2,7 @@ import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Boot, LocationPermission, InstanceLink } from './stacks/CoreStack';
 import AuthStack from './stacks/AuthStack';
+import SmaytaStack from './stacks/SmaytaStack';
 import DriverNavigator from './DriverNavigator';
 import { useIsNotAuthenticated, useIsAuthenticated } from '../contexts/AuthContext';
 import AppLayout from '../layouts/AppLayout';
@@ -14,6 +15,7 @@ const RootStack = createNativeStackNavigator({
         LocationPermission,
         InstanceLink,
         ...AuthStack,
+        ...SmaytaStack,
         DriverNavigator: {
             if: useIsAuthenticated,
             screen: DriverNavigator,

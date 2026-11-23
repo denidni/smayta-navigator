@@ -66,6 +66,11 @@ const LoginScreen = () => {
             <SafeAreaView style={{ flex: 1 }}>
                 <YStack flex={1} justifyContent='flex-end' alignItems='center' space='$3' px='$5' pb='$6'>
                     <PhoneLoginButton onPress={handlePhoneLogin} />
+                    <Button size='$5' width='100%' bg='transparent' borderWidth={1} borderColor='white' onPress={() => navigation.navigate('SmaytaDriver')} rounded>
+                        <Button.Text color='white' fontWeight='bold'>
+                            {t('Smayta.login.becomeDriver')}
+                        </Button.Text>
+                    </Button>
                     <Text color='$textSecondary' fontSize='$2'>
                         v{DeviceInfo.getVersion()} #{DeviceInfo.getBuildNumber()}
                     </Text>

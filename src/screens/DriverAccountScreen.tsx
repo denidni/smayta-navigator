@@ -254,6 +254,21 @@ const DriverAccountScreen = () => {
             onPress: () => navigation.navigate('EditAccountProperty', { property: { name: t('AccountScreen.name'), key: 'name', component: 'input' } }),
         },
         {
+            title: t('Smayta.titles.wallet'),
+            rightComponent: null,
+            onPress: () => navigation.navigate('SmaytaWallet'),
+        },
+        {
+            title: t('Smayta.titles.driver'),
+            rightComponent: null,
+            onPress: () => navigation.navigate('SmaytaDriver'),
+        },
+        {
+            title: t('Smayta.titles.account'),
+            rightComponent: null,
+            onPress: () => navigation.navigate('SmaytaAccount'),
+        },
+        {
             title: translate('DriverAccountScreen.language'),
             rightComponent: (
                 <Text color='$textSecondary' opacity={0.5}>
