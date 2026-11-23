@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlug } from '@fortawesome/free-solid-svg-icons';
 import { toast, ToastPosition } from '@backpackapp-io/react-native-toast';
 import { titleize } from '../utils/format';
-import { navigatorConfig } from '../utils';
+import { navigatorConfig, config } from '../utils';
 import { PhoneLoginButton, AppleLoginButton, GoogleLoginButton } from '../components/Buttons';
 import useOAuth from '../hooks/use-oauth';
 import LinearGradient from 'react-native-linear-gradient';
@@ -41,7 +41,10 @@ const LoginScreen = () => {
         <YStack flex={1} height='100%' width='100%' bg={navigatorConfig('colors.loginBackground')} position='relative'>
             <LinearGradient colors={['rgba(0, 0, 0, 0.0)', 'rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.8)']} style={StyleSheet.absoluteFillObject} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} />
             <YStack justifyContent='center' alignItems='center' paddingTop={insets.top} marginTop={windowHeight / 3}>
-                <Image source={require('../../assets/navigator-icon-transparent.png')} style={{ width: 60, height: 60 }} />
+                <Image source={require('../../assets/navigator-icon-transparent.png')} style={{ width: 88, height: 88 }} />
+                <Text color='white' fontSize='$8' fontWeight='bold' mt='$3'>
+                    {config('APP_NAME', 'Navigator')}
+                </Text>
             </YStack>
             <SafeAreaView style={{ flex: 1 }}>
                 <YStack flex={1} justifyContent='flex-end' alignItems='center' space='$3' px='$5' pb='$6'>

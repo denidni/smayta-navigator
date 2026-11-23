@@ -3,6 +3,7 @@ import { Pressable } from 'react-native';
 import { Avatar, XStack, YStack, Text, useTheme } from 'tamagui';
 import useAppTheme from '../hooks/use-app-theme';
 
+import { translate } from '../utils/localize';
 export const ChatParticipants = ({ participants = [], size = 30, onPress }) => {
     const { isDarkMode } = useAppTheme();
 
@@ -10,7 +11,7 @@ export const ChatParticipants = ({ participants = [], size = 30, onPress }) => {
     if (participants.length === 0) {
         return (
             <XStack alignItems='center'>
-                <Text color='$textPrimary'>No participants</Text>
+                <Text color='$textPrimary'>{translate('ChatParticipants.noParticipants')}</Text>
             </XStack>
         );
     }

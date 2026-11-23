@@ -7,6 +7,7 @@ import { useConfig } from '../contexts/ConfigContext';
 import { toBoolean } from '../utils';
 import useAppTheme from '../hooks/use-app-theme';
 
+import { translate } from '../utils/localize';
 const InstanceLinkScreen = () => {
     const navigation = useNavigation();
     const insets = useSafeAreaInsets();
@@ -25,7 +26,7 @@ const InstanceLinkScreen = () => {
         setInstanceLinkConfig('SOCKETCLUSTER_PORT', socketClusterPort);
         setInstanceLinkConfig('SOCKETCLUSTER_SECURE', socketClusterSecure);
 
-        Alert.alert('Instance connection config saved successfully.');
+        Alert.alert(translate('InstanceLinkScreen.instanceConnectionConfigSavedSuccessfully'));
     }, [setInstanceLinkConfig, fleetbaseHost, fleetbaseKey, socketClusterHost, socketClusterPort, socketClusterSecure]);
 
     const handleReset = useCallback(() => {
@@ -35,7 +36,7 @@ const InstanceLinkScreen = () => {
         setSocketClusterHost(null);
         setSocketClusterPort(null);
         setSocketClusterSecure(null);
-        Alert.alert('Instance connection config reset successfully.');
+        Alert.alert(translate('InstanceLinkScreen.instanceConnectionConfigResetSuccessfully'));
     }, [clearInstanceLinkConfig, setFleetbaseHost, setFleetbaseKey, setSocketClusterHost, setSocketClusterPort, setSocketClusterSecure]);
 
     return (
@@ -44,12 +45,12 @@ const InstanceLinkScreen = () => {
                 <YStack space='$5' px='$4' py='$4'>
                     <YStack space='$2'>
                         <Text color='$textPrimary' fontWeight='bold'>
-                            FLEETBASE HOST
+                            {translate('InstanceLinkScreen.fleetbaseHost')}
                         </Text>
                         <Input
                             value={fleetbaseHost}
                             onChangeText={(text) => setFleetbaseHost(text)}
-                            placeholder='Input host of Fleetbase instance...'
+                            placeholder={translate('InstanceLinkScreen.inputHostOfFleetbaseInstance')}
                             borderWidth={1}
                             color='$textPrimary'
                             borderColor='$borderColor'
@@ -63,12 +64,12 @@ const InstanceLinkScreen = () => {
                     </YStack>
                     <YStack space='$2'>
                         <Text color='$textPrimary' fontWeight='bold'>
-                            FLEETBASE KEY
+                            {translate('InstanceLinkScreen.fleetbaseKey')}
                         </Text>
                         <Input
                             value={fleetbaseKey}
                             onChangeText={(text) => setFleetbaseKey(text)}
-                            placeholder='Input API Key for Fleetbase instance...'
+                            placeholder={translate('InstanceLinkScreen.inputApiKeyForFleetbaseInstance')}
                             borderWidth={1}
                             color='$textPrimary'
                             borderColor='$borderColor'
@@ -82,12 +83,12 @@ const InstanceLinkScreen = () => {
                     </YStack>
                     <YStack space='$2'>
                         <Text color='$textPrimary' fontWeight='bold'>
-                            SOCKETCLUSTER HOST
+                            {translate('InstanceLinkScreen.socketclusterHost')}
                         </Text>
                         <Input
                             value={socketClusterHost}
                             onChangeText={(text) => setSocketClusterHost(text)}
-                            placeholder='Input SocketCluster host for Fleetbase instance...'
+                            placeholder={translate('InstanceLinkScreen.inputSocketclusterHostForFleetbaseInstance')}
                             borderWidth={1}
                             color='$textPrimary'
                             borderColor='$borderColor'
@@ -101,12 +102,12 @@ const InstanceLinkScreen = () => {
                     </YStack>
                     <YStack space='$2'>
                         <Text color='$textPrimary' fontWeight='bold'>
-                            SOCKETCLUSTER PORT
+                            {translate('InstanceLinkScreen.socketclusterPort')}
                         </Text>
                         <Input
                             value={socketClusterPort}
                             onChangeText={(text) => setSocketClusterPort(text)}
-                            placeholder='Input SocketCluster port for Fleetbase instance...'
+                            placeholder={translate('InstanceLinkScreen.inputSocketclusterPortForFleetbaseInstance')}
                             keyboardType='phone-pad'
                             borderWidth={1}
                             color='$textPrimary'
@@ -121,7 +122,7 @@ const InstanceLinkScreen = () => {
                     </YStack>
                     <YStack space='$2'>
                         <Text color='$textPrimary' fontWeight='bold'>
-                            SOCKETCLUSTER SECURE
+                            {translate('InstanceLinkScreen.socketclusterSecure')}
                         </Text>
                         <Switch
                             id='socketClusterSecure'
@@ -141,12 +142,12 @@ const InstanceLinkScreen = () => {
                 <YStack space='$3' pb={insets.bottom}>
                     <Button onPress={handleSave} size='$5' bg='$info' borderColor='$infoBorder' borderWidth={1} flex={1}>
                         <Button.Text color='$infoText' fontWeight='bold' fontSize='$5'>
-                            Save Changes
+                            {translate('InstanceLinkScreen.saveChanges')}
                         </Button.Text>
                     </Button>
                     <Button onPress={handleReset} size='$5' bg='$default' borderColor='$defaultBorder' borderWidth={1} flex={1}>
                         <Button.Text color='$defaultText' fontWeight='bold' fontSize='$5'>
-                            Reset
+                            {translate('InstanceLinkScreen.reset')}
                         </Button.Text>
                     </Button>
                 </YStack>

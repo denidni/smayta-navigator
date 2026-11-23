@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useCallback, useContext, useMemo } from 'react';
 import { AppState, Platform } from 'react-native';
-import BackgroundGeolocation from 'react-native-background-geolocation';
+// Smayta Transporte: en Android es el GPS propio y libre; en iOS, el plugin de Transistorsoft (gratuito allí).
+import BackgroundGeolocation from '../utils/background-location';
 import BackgroundFetch from 'react-native-background-fetch';
 import { check, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import { Place, Point } from '@fleetbase/sdk';
@@ -9,6 +10,7 @@ import { useAuth } from './AuthContext';
 import useStorage from '../hooks/use-storage';
 import useFleetbase from '../hooks/use-fleetbase';
 
+import { translate } from '../utils/localize';
 const LocationContext = createContext({
     location: null,
     isTracking: false,
@@ -139,18 +141,24 @@ export const LocationProvider = ({ children }) => {
     const startTracking = useCallback(() => {
         if (!canTrackLocation) return;
 
-        BackgroundGeolocation.start(() => {
-            setIsTracking(true);
-            console.log('[BackgroundGeolocation] Tracking started');
-        });
+        BackgroundGeolocation.start(
+            () => {
+                setIsTracking(true);
+                console.log('[BackgroundGeolocation] Tracking started');
+            },
+            (error) => console.warn('[BackgroundGeolocation] start failed:', error)
+        );
     }, [canTrackLocation]);
 
     // Function to stop tracking.
     const stopTracking = useCallback(() => {
-        BackgroundGeolocation.stop(() => {
-            setIsTracking(false);
-            console.log('[BackgroundGeolocation] Tracking stopped');
-        });
+        BackgroundGeolocation.stop(
+            () => {
+                setIsTracking(false);
+                console.log('[BackgroundGeolocation] Tracking stopped');
+            },
+            (error) => console.warn('[BackgroundGeolocation] stop failed:', error)
+        );
     }, []);
 
     useEffect(() => {
@@ -165,9 +173,8 @@ export const LocationProvider = ({ children }) => {
         BackgroundGeolocation.ready(
             {
                 backgroundPermissionRationale: {
-                    title: 'Allow Fleetbase Navigator to access your location',
-                    message:
-                        'Fleetbase Navigator collects precise location data to enable real-time driver tracking and order progress updates for your organization’s dispatchers and operations team, even when the app is closed or not in use. Location is collected while you are online and is sent securely to Fleetbase.',
+                    title: translate('LocationContext.allowFleetbaseNavigatorToAccessYour'),
+                    message: translate('LocationContext.fleetbaseNavigatorCollectsPreciseLocationData'),
                     positiveAction: 'Allow',
                     negativeAction: 'Deny',
                 },
@@ -177,6 +184,12 @@ export const LocationProvider = ({ children }) => {
                 startOnBoot: true,
                 stopTimeout: 1,
                 debug: false,
+                // Aviso fijo mientras se sigue la posición (Android).
+                notification: {
+                    title: translate('LocationContext.trackingNotificationTitle'),
+                    text: translate('LocationContext.trackingNotificationText'),
+                    channelName: 'Smayta Transporte',
+                },
                 ...getHttpConfig(),
             },
             (state) => {
@@ -184,7 +197,8 @@ export const LocationProvider = ({ children }) => {
                 if (isActive) {
                     startTracking();
                 }
-            }
+            },
+            (error) => console.warn('[BackgroundGeolocation] ready failed:', error)
         );
 
         // Subscribe to location events.

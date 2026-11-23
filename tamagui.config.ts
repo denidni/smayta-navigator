@@ -86,6 +86,19 @@ const colors = {
         800: '#9a3412',
         900: '#7c2d12',
     },
+    // Naranja de Smayta (500 = logo, 600 = botones, 700 = enlaces).
+    smayta: {
+        50: '#fef3ef',
+        100: '#fde3d9',
+        200: '#fbc4b0',
+        300: '#f6997c',
+        400: '#ee6a45',
+        500: '#e13b13',
+        600: '#ca3511',
+        700: '#a92c0e',
+        800: '#86230b',
+        900: '#6b1c09',
+    },
     indigo: {
         50: '#eef2ff',
         100: '#e0e7ff',
@@ -267,6 +280,20 @@ export const themes = {
         primary: colors.orange[500],
         primaryBorder: colors.orange[600],
         primaryText: colors.orange[100],
+    }),
+
+    // Smayta Transporte (APP_THEME=smayta)
+    lightSmayta: createTheme({
+        ...lightBase,
+        primary: colors.smayta[600],
+        primaryBorder: colors.smayta[700],
+        primaryText: 'white',
+    }),
+    darkSmayta: createTheme({
+        ...darkBase,
+        primary: colors.smayta[500],
+        primaryBorder: colors.smayta[600],
+        primaryText: 'white',
     }),
 };
 
