@@ -644,6 +644,16 @@
             "uploadReceipt": "Envoyer le justificatif de versement",
             "receiptSent": "Justificatif envoyé. Smayta va le vérifier.",
             "receiptReview": "Smayta vérifie votre justificatif."
+        },
+        "vehicle": {
+            "title": "Votre véhicule",
+            "hint": "Indiquez l’immatriculation et des photos de votre véhicule (de l’extérieur, plaque visible). Le client voit la première photo et la plaque pour vous reconnaître.",
+            "add": "Ajouter une photo du véhicule",
+            "addMore": "Ajouter une autre photo",
+            "mainPhoto": "Celle que voit le client",
+            "removeTitle": "Supprimer cette photo ?",
+            "remove": "Supprimer",
+            "kindChangeHint": "Si vous changez de véhicule, Smayta revérifie votre inscription et peut demander d’autres documents."
         }
     }
 }

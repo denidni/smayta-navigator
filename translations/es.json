@@ -644,6 +644,16 @@
             "uploadReceipt": "Subir el justificante del ingreso",
             "receiptSent": "Justificante enviado. Smayta lo comprobará.",
             "receiptReview": "Smayta está comprobando tu justificante."
+        },
+        "vehicle": {
+            "title": "Tu vehículo",
+            "hint": "Pon la matrícula y fotos de tu vehículo (por fuera, con la matrícula a la vista). El cliente ve la primera foto y la matrícula para reconocerte.",
+            "add": "Añadir foto del vehículo",
+            "addMore": "Añadir otra foto",
+            "mainPhoto": "La que ve el cliente",
+            "removeTitle": "¿Quitar esta foto?",
+            "remove": "Quitar",
+            "kindChangeHint": "Si cambias de vehículo, Smayta vuelve a revisar tu alta y puede pedirte otros documentos."
         }
     }
 }

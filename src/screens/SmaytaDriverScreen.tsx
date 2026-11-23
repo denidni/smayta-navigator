@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Linking, Platform, RefreshControl, ScrollView } from 'react-native';
+import { Alert, Image, Linking, Platform, Pressable, RefreshControl, ScrollView } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Button, Checkbox, Spinner, Text, XStack, YStack } from 'tamagui';
@@ -278,7 +278,98 @@ const DriverStatus = ({ me, onChange }: { me: MiTransportista; onChange: (me: Mi
                 </Card>
             )}
 
+            <VehicleData me={me} onChange={onChange} />
+
             <PayoutData me={me} onChange={onChange} />
+        </YStack>
+    );
+};
+
+/** Su vehículo: tipo, matrícula y hasta 4 fotos (el cliente ve la primera con la matrícula). */
+const MAX_VEHICLE_PHOTOS = 4;
+const VehicleData = ({ me, onChange }: { me: MiTransportista; onChange: (me: MiTransportista) => void }) => {
+    const [vehicle, setVehicle] = useState<VehicleKind | null>(me.vehicle_kind);
+    const [plate, setPlate] = useState(me.vehicle_plate ?? '');
+    const [busy, setBusy] = useState(false);
+    const [adding, setAdding] = useState(false);
+    const photos = me.vehicle_photos ?? [];
+    const changed = vehicle !== me.vehicle_kind || plate.trim() !== (me.vehicle_plate ?? '');
+    const needsPlate = vehicle && vehicle !== 'bicycle' && vehicle !== 'scooter';
+
+    const save = async () => {
+        setBusy(true);
+        try {
+            onChange(await smayta.saveTransportista({ ...(vehicle ? { vehicle_kind: vehicle } : {}), vehicle_plate: plate.trim().toUpperCase() || null }));
+            toast.success(translate('Smayta.driver.saved'));
+        } catch (err) {
+            toast.error(smaytaErrorMessage(err));
+        } finally {
+            setBusy(false);
+        }
+    };
+
+    const add = async () => {
+        const photo = await pickPhoto({ name: 'vehiculo' });
+        if (!photo) return;
+        setAdding(true);
+        try {
+            onChange(await smayta.addVehiclePhoto(photo));
+        } catch (err) {
+            toast.error(smaytaErrorMessage(err));
+        } finally {
+            setAdding(false);
+        }
+    };
+
+    const remove = (id: string) =>
+        Alert.alert(translate('Smayta.vehicle.removeTitle'), '', [
+            { text: translate('common.cancel'), style: 'cancel' },
+            {
+                text: translate('Smayta.vehicle.remove'),
+                style: 'destructive',
+                onPress: async () => {
+                    try {
+                        onChange(await smayta.removeVehiclePhoto(id));
+                    } catch (err) {
+                        toast.error(smaytaErrorMessage(err));
+                    }
+                },
+            },
+        ]);
+
+    return (
+        <YStack space='$3'>
+            <Text color='$textPrimary' fontSize='$6' fontWeight='bold'>
+                {translate('Smayta.vehicle.title')}
+            </Text>
+            <Text color='$textSecondary' fontSize='$3'>
+                {translate('Smayta.vehicle.hint')}
+            </Text>
+            <Chips options={VEHICLES.map((v) => ({ value: v, label: translate(`Smayta.vehicles.${v}`) }))} value={vehicle} onChange={setVehicle} />
+            {needsPlate && <Field label={translate('Smayta.driver.plate')} value={plate} onChangeText={setPlate} autoCapitalize='characters' />}
+            {changed && <BigButton title={translate('Smayta.driver.save')} onPress={save} loading={busy} />}
+            {vehicle !== me.vehicle_kind && (
+                <Text color='$warningText' fontSize='$3'>
+                    {translate('Smayta.vehicle.kindChangeHint')}
+                </Text>
+            )}
+            <XStack flexWrap='wrap' gap='$2'>
+                {photos.map((p, i) => (
+                    <Pressable key={p.id} onLongPress={() => remove(p.id)} onPress={() => remove(p.id)}>
+                        <YStack>
+                            <Image source={{ uri: p.url }} style={{ width: 150, height: 110, borderRadius: 8 }} resizeMode='cover' />
+                            {i === 0 && (
+                                <Text color='$textSecondary' fontSize='$2'>
+                                    {translate('Smayta.vehicle.mainPhoto')}
+                                </Text>
+                            )}
+                        </YStack>
+                    </Pressable>
+                ))}
+            </XStack>
+            {photos.length < MAX_VEHICLE_PHOTOS && (
+                <BigButton tone='info' title={translate(photos.length ? 'Smayta.vehicle.addMore' : 'Smayta.vehicle.add')} onPress={add} loading={adding} />
+            )}
         </YStack>
     );
 };

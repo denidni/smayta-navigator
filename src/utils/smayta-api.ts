@@ -109,6 +109,8 @@ export type MiTransportista = {
     missing_documents: DocumentKind[];
     missing: string[];
     documents: DriverDocument[];
+    /** Fotos del vehículo (la primera la ve el cliente con la matrícula); servidores antiguos no la mandan. */
+    vehicle_photos?: { id: string; url: string }[];
     identity: IdentityState;
     identity_required: boolean;
 };
@@ -229,6 +231,18 @@ export const smayta = {
         form.append('kind', kind);
         if (expiresAt) form.append('expires_at', expiresAt);
         const { transportista } = await request<{ transportista: MiTransportista }>('/store/transporte/transportista/documentos', { method: 'POST', form });
+        return transportista;
+    },
+
+    async addVehiclePhoto(file: PhotoFile): Promise<MiTransportista> {
+        const form = new FormData();
+        form.append('file', file as any);
+        const { transportista } = await request<{ transportista: MiTransportista }>('/store/transporte/transportista/vehiculo/fotos', { method: 'POST', form });
+        return transportista;
+    },
+
+    async removeVehiclePhoto(photoId: string): Promise<MiTransportista> {
+        const { transportista } = await request<{ transportista: MiTransportista }>(`/store/transporte/transportista/vehiculo/fotos/${encodeURIComponent(photoId)}`, { method: 'DELETE' });
         return transportista;
     },
 

@@ -644,6 +644,16 @@
             "uploadReceipt": "Upload the deposit receipt",
             "receiptSent": "Receipt sent. Smayta will check it.",
             "receiptReview": "Smayta is checking your receipt."
+        },
+        "vehicle": {
+            "title": "Your vehicle",
+            "hint": "Add the number plate and photos of your vehicle (outside, with the plate visible). The customer sees the first photo and the plate to recognise you.",
+            "add": "Add a vehicle photo",
+            "addMore": "Add another photo",
+            "mainPhoto": "The one the customer sees",
+            "removeTitle": "Remove this photo?",
+            "remove": "Remove",
+            "kindChangeHint": "If you change vehicle, Smayta reviews your sign-up again and may ask for other documents."
         }
     }
 }
