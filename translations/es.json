@@ -56,7 +56,8 @@
         "schemeChanged": "Ahora en modo {{selectedScheme}}.",
         "languageChanged": "Ahora en {{selectedLanguage}}.",
         "photoChanged": "Foto de perfil cambiada.",
-        "photoRemoved": "Foto de perfil eliminada."
+        "photoRemoved": "Foto de perfil eliminada.",
+        "sourceCode": "Código fuente"
     },
     "ProfileScreen": {
         "organizationChanged": "Ahora en la organización {{selectedOrganization}}."
@@ -219,7 +220,9 @@
     },
     "LocationContext": {
         "allowFleetbaseNavigatorToAccessYour": "Permite a Smayta Transporte usar tu ubicación",
-        "fleetbaseNavigatorCollectsPreciseLocationData": "Smayta Transporte usa tu ubicación exacta para que el equipo de Smayta y los clientes sigan el viaje en tiempo real, también con la app cerrada o en segundo plano. Solo se recoge mientras estás conectado y se envía de forma segura a Smayta."
+        "fleetbaseNavigatorCollectsPreciseLocationData": "Smayta Transporte usa tu ubicación exacta para que el equipo de Smayta y los clientes sigan el viaje en tiempo real, también con la app cerrada o en segundo plano. Solo se recoge mientras estás conectado y se envía de forma segura a Smayta.",
+        "trackingNotificationTitle": "Ubicación en uso",
+        "trackingNotificationText": "Smayta Transporte envía tu posición mientras estás conectado."
     },
     "Useoauth": {
         "appleSignInIsNotSupported": "Este dispositivo no admite iniciar sesión con Apple",
@@ -278,7 +281,15 @@
     },
     "DriverDashboardScreen": {
         "activeOrders": "Viajes en curso",
-        "speed": "Velocidad"
+        "speed": "Velocidad",
+        "tracking": "Seguimiento",
+        "yes": "Sí",
+        "no": "No",
+        "location": "Ubicación",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "heading": "Rumbo",
+        "altitude": "Altitud"
     },
     "DriverProfileScreen": {
         "account": "Cuenta",

@@ -6,7 +6,7 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { toast, ToastPosition } from '@backpackapp-io/react-native-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { showActionSheet, abbreviateName } from '../utils';
+import { showActionSheet, abbreviateName, config } from '../utils';
 import { titleize } from '../utils/format';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -34,7 +34,7 @@ const DriverAccountScreen = () => {
     };
 
     const handleOpenTermsOfService = async () => {
-        const url = 'https://www.fleetbase.io/terms';
+        const url = config('TERMS_URL', 'https://smayta.es/info/condiciones');
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
@@ -45,12 +45,22 @@ const DriverAccountScreen = () => {
     };
 
     const handleOpenPrivacyPolicy = async () => {
-        const url = 'https://www.fleetbase.io/privacy-policy';
+        const url = config('PRIVACY_URL', 'https://smayta.es/info/privacidad');
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
             await Linking.openURL(url);
         } else {
+            console.warn(`Can't open URL: ${url}`);
+        }
+    };
+
+    // Código fuente de la app (AGPL-3.0: hay que ofrecerlo a quien la usa).
+    const handleOpenSourceCode = async () => {
+        const url = config('SOURCE_CODE_URL', 'https://github.com/denidni/smayta-navigator');
+        try {
+            await Linking.openURL(url);
+        } catch {
             console.warn(`Can't open URL: ${url}`);
         }
     };
@@ -279,6 +289,15 @@ const DriverAccountScreen = () => {
             title: t('AccountScreen.clearCache'),
             rightComponent: null,
             onPress: handleClearCache,
+        },
+        {
+            title: t('AccountScreen.sourceCode'),
+            rightComponent: (
+                <Text color='$textSecondary' opacity={0.5}>
+                    AGPL-3.0
+                </Text>
+            ),
+            onPress: handleOpenSourceCode,
         },
         // {
         //     title: t('AccountScreen.tracking'),

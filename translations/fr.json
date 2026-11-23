@@ -56,7 +56,8 @@
         "schemeChanged": "Mode {{selectedScheme}} activé.",
         "languageChanged": "Langue : {{selectedLanguage}}.",
         "photoChanged": "Photo de profil modifiée.",
-        "photoRemoved": "Photo de profil supprimée."
+        "photoRemoved": "Photo de profil supprimée.",
+        "sourceCode": "Code source"
     },
     "ProfileScreen": {
         "organizationChanged": "Organisation {{selectedOrganization}} sélectionnée."
@@ -219,7 +220,9 @@
     },
     "LocationContext": {
         "allowFleetbaseNavigatorToAccessYour": "Autorisez Smayta Transporte à accéder à votre position",
-        "fleetbaseNavigatorCollectsPreciseLocationData": "Smayta Transporte utilise votre position précise pour que l'équipe de Smayta et les clients suivent la course en temps réel, même lorsque l'application est fermée ou en arrière-plan. Elle n'est collectée que lorsque vous êtes en ligne et est envoyée de manière sécurisée à Smayta."
+        "fleetbaseNavigatorCollectsPreciseLocationData": "Smayta Transporte utilise votre position précise pour que l'équipe de Smayta et les clients suivent la course en temps réel, même lorsque l'application est fermée ou en arrière-plan. Elle n'est collectée que lorsque vous êtes en ligne et est envoyée de manière sécurisée à Smayta.",
+        "trackingNotificationTitle": "Position utilisée",
+        "trackingNotificationText": "Smayta Transporte partage votre position pendant que vous êtes connecté."
     },
     "Useoauth": {
         "appleSignInIsNotSupported": "La connexion avec Apple n'est pas prise en charge sur cet appareil",
@@ -278,7 +281,15 @@
     },
     "DriverDashboardScreen": {
         "activeOrders": "Courses en cours",
-        "speed": "Vitesse"
+        "speed": "Vitesse",
+        "tracking": "Suivi",
+        "yes": "Oui",
+        "no": "Non",
+        "location": "Position",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "heading": "Cap",
+        "altitude": "Altitude"
     },
     "DriverProfileScreen": {
         "account": "Compte",

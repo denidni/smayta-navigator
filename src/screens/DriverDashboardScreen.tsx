@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Text, YStack, XStack, useTheme } from 'tamagui';
 import { useLocation } from '../contexts/LocationContext';
 import { useOrderManager } from '../contexts/OrderManagerContext';
-import { humanize } from 'inflected';
 import { get } from '../utils';
 import OdometerNumber from '../components/OdometerNumber';
 import useAppTheme from '../hooks/use-app-theme';
@@ -30,22 +29,24 @@ const DriverDashboardScreen = () => {
                     <WidgetContainer>
                         <XStack>
                             <YStack flex={1}>
-                                <Text color='$textPrimary'>Tracking:</Text>
+                                <Text color='$textPrimary'>{translate('DriverDashboardScreen.tracking')}:</Text>
                             </YStack>
                             <YStack flex={1} alignItems='flex-end'>
-                                <Text color={isTracking ? '$successBorder' : '$textSecondary'}>{isTracking ? 'Yes' : 'No'}</Text>
+                                <Text color={isTracking ? '$successBorder' : '$textSecondary'}>
+                                    {isTracking ? translate('DriverDashboardScreen.yes') : translate('DriverDashboardScreen.no')}
+                                </Text>
                             </YStack>
                         </XStack>
                     </WidgetContainer>
                     <WidgetContainer>
                         <Text color='$textPrimary' fontWeight='bold' mb='$3'>
-                            Location:
+                            {translate('DriverDashboardScreen.location')}:
                         </Text>
                         <XStack flexWrap='wrap' gap='$3'>
                             {['latitude', 'longitude', 'heading', 'altitude'].map((key, index) => {
                                 return (
                                     <YStack key={index} width='45%' overflow='hidden'>
-                                        <Text color='$textSecondary'>{humanize(key)}:</Text>
+                                        <Text color='$textSecondary'>{translate(`DriverDashboardScreen.${key}`)}:</Text>
                                         <Text color='$textPrimary' numberOfLines={1}>
                                             {get(location, `coords.${key}`)}
                                         </Text>
