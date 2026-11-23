@@ -10,6 +10,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import storage from '../utils/storage';
 
+import { translate } from '../utils/localize';
 const DriverProfileScreen = () => {
     const theme = useTheme();
     const navigation = useNavigation();
@@ -54,10 +55,10 @@ const DriverProfileScreen = () => {
 
     const menuItems = useMemo(() => {
         const items = [
-            { id: '1', title: 'Account', screen: 'DriverAccount' },
+            { id: '1', title: translate('DriverProfileScreen.account'), screen: 'DriverAccount' },
             {
                 id: '2',
-                title: 'Organization',
+                title: translate('DriverProfileScreen.organization'),
                 handler: () => handleSelectOrganization(),
                 rightComponent: (
                     <Text color='$textSecondary' fontSize={13} numberOfLines={1}>

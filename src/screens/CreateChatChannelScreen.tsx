@@ -14,6 +14,7 @@ import useSocketClusterClient from '../hooks/use-socket-cluster-client';
 import ChatParticipantAvatar from '../components/ChatParticipantAvatar';
 import Spacer from '../components/Spacer';
 
+import { translate } from '../utils/localize';
 const CreateChatChannelScreen = ({ route }) => {
     const theme = useTheme();
     const navigation = useNavigation();
@@ -36,7 +37,7 @@ const CreateChatChannelScreen = ({ route }) => {
 
     const handleCreateChat = useCallback(async () => {
         if (!channelName.trim()) {
-            return Alert.alert('Chat channel name is required.');
+            return Alert.alert(translate('CreateChatChannelScreen.chatChannelNameIsRequired'));
         }
 
         setIsLoading(true);
@@ -95,14 +96,14 @@ const CreateChatChannelScreen = ({ route }) => {
                                 <Button.Icon>
                                     <FontAwesomeIcon icon={faTimes} color={theme['$errorText'].val} />
                                 </Button.Icon>
-                                <Button.Text color='$errorText'>Unselect</Button.Text>
+                                <Button.Text color='$errorText'>{translate('CreateChatChannelScreen.unselect')}</Button.Text>
                             </Button>
                         ) : (
                             <Button size='$2' bg='$success' borderWidth={1} borderColor='$successBorder' onPress={() => handleSelectParticipant(participant)}>
                                 <Button.Icon>
                                     <FontAwesomeIcon icon={faCheck} color={theme['$successText'].val} />
                                 </Button.Icon>
-                                <Button.Text color='$successText'>Select</Button.Text>
+                                <Button.Text color='$successText'>{translate('CreateChatChannelScreen.select')}</Button.Text>
                             </Button>
                         )}
                     </YStack>
@@ -126,7 +127,7 @@ const CreateChatChannelScreen = ({ route }) => {
                             </YStack>
                             <YStack>
                                 <Text color='$textPrimary' fontSize={24} fontWeight='bold'>
-                                    Create new Chat
+                                    {translate('CreateChatChannelScreen.createNewChat')}
                                 </Text>
                             </YStack>
                         </XStack>
@@ -134,12 +135,12 @@ const CreateChatChannelScreen = ({ route }) => {
                     <YStack mt='$5' pb='$2'>
                         <YStack px='$3' space='$2'>
                             <Text color='$textPrimary' fontSize={18} fontWeight='bold' px='$1'>
-                                Channel Name
+                                {translate('CreateChatChannelScreen.channelName')}
                             </Text>
                             <Input
                                 value={channelName}
                                 onChangeText={setChannelName}
-                                placeholder='Input chat channel name...'
+                                placeholder={translate('CreateChatChannelScreen.inputChatChannelName')}
                                 borderWidth={1}
                                 color='$textPrimary'
                                 borderColor='$borderColor'
@@ -169,7 +170,7 @@ const CreateChatChannelScreen = ({ route }) => {
                 <YStack bg='$background' borderTopWidth={1} borderColor='$borderColorWithShadow' px='$3' py='$4'>
                     <Button size='$5' bg='$success' borderWidth={1} borderColor='$successBorder' onPress={handleCreateChat}>
                         <Button.Icon>{isLoading ? <Spinner /> : <FontAwesomeIcon icon={faSave} color={theme['$successText'].val} />}</Button.Icon>
-                        <Button.Text color='$successText'>Create new Chat</Button.Text>
+                        <Button.Text color='$successText'>{translate('CreateChatChannelScreen.createNewChat')}</Button.Text>
                     </Button>
                     <Spacer height={25} />
                 </YStack>

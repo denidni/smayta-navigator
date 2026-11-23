@@ -1,4 +1,5 @@
-import BackgroundGeolocation from 'react-native-background-geolocation';
+// Smayta Transporte: en Android es el GPS propio y libre; en iOS, el plugin de Transistorsoft.
+import BackgroundGeolocation from './background-location';
 import { Platform } from 'react-native';
 import { EventRegister } from 'react-native-event-listeners';
 import { checkMultiple, request, PERMISSIONS, RESULTS } from 'react-native-permissions';

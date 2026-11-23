@@ -1,0 +1,421 @@
+{
+    "common": {
+        "fleetbase": "Fleetbase",
+        "navigator": "Smayta Transporte",
+        "apiKey": "مفتاح API",
+        "cancel": "إلغاء",
+        "new": "جديد",
+        "create": "إنشاء",
+        "save": "حفظ",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "update": "تحديث",
+        "service": "خدمة",
+        "retry": "إعادة المحاولة",
+        "loading": "جارٍ التحميل...",
+        "confirm": "تأكيد",
+        "confirmation": "تأكيد",
+        "ok": "حسنًا",
+        "done": "تم",
+        "tryAgain": "حاول مرة أخرى"
+    },
+    "orderStatuses": {
+        "created": "تم الإنشاء",
+        "preparing": "قيد التحضير",
+        "dispatched": "تم الإرسال",
+        "driver_enroute": "السائق في الطريق",
+        "pending": "قيد الانتظار",
+        "in_progress": "جارٍ",
+        "completed": "مكتمل"
+    },
+    "BootScreen": {
+        "missingRequiredConfigurationKeys": "مفاتيح إعداد مطلوبة مفقودة"
+    },
+    "AccountScreen": {
+        "changeProfilePhotoOptions": {
+            "takePhoto": "التقاط صورة",
+            "photoLibrary": "مكتبة الصور",
+            "deleteProfilePhoto": "حذف صورة الملف الشخصي"
+        },
+        "profilePhoto": "صورة الملف الشخصي",
+        "email": "البريد الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "name": "الاسم",
+        "language": "اللغة",
+        "theme": "المظهر",
+        "deleteAccount": "حذف الحساب",
+        "termsOfService": "شروط الخدمة",
+        "privacyPolicy": "سياسة الخصوصية",
+        "tracking": "التتبع",
+        "account": "الحساب",
+        "dataProtection": "حماية البيانات",
+        "clearCache": "مسح ذاكرة التخزين المؤقت",
+        "signOut": "تسجيل الخروج",
+        "signedOut": "تم تسجيل الخروج.",
+        "cacheCleared": "تم مسح ذاكرة التخزين المؤقت.",
+        "schemeChanged": "الوضع الحالي: {{selectedScheme}}.",
+        "languageChanged": "اللغة الحالية: {{selectedLanguage}}.",
+        "photoChanged": "تم تغيير صورة الملف الشخصي.",
+        "photoRemoved": "تم حذف صورة الملف الشخصي.",
+        "sourceCode": "الشيفرة المصدرية"
+    },
+    "ProfileScreen": {
+        "organizationChanged": "تم التبديل إلى مؤسسة {{selectedOrganization}}."
+    },
+    "AddNewLocationScreen": {
+        "addNewAddress": "إضافة عنوان جديد",
+        "streetName": "اسم الشارع والرقم",
+        "weThinkYoureAroundHere": "نعتقد أنك هنا تقريبًا",
+        "cantFindYourAddress": "لا تجد عنوانك؟",
+        "useMapInstead": "استخدم الخريطة بدلًا من ذلك"
+    },
+    "SetupWarningScreen": {
+        "configurationMissing": "الإعدادات مفقودة!",
+        "unconfiguredApp": "يبدو أن التطبيق غير مُعدّ بشكل صحيح.",
+        "envMissing": "غير موجود في البيئة!"
+    },
+    "DriverReportScreen": {
+        "issues": "المشاكل",
+        "fuelReports": "تقارير الوقود"
+    },
+    "LocationPermissionScreen": {
+        "enableLocationServices": "استخدام بيانات الموقع",
+        "enableLocationPrompt": "يستخدم Smayta Transporte موقعك الدقيق ليتمكن فريق Smayta والعملاء من تتبع الرحلة مباشرة، حتى عند إغلاق التطبيق أو تشغيله في الخلفية. لا يُجمع الموقع إلا أثناء اتصالك ويُرسل بأمان إلى Smayta.",
+        "shareAndContinue": "السماح بالموقع والمتابعة",
+        "privacyPolicy": "سياسة الخصوصية",
+        "permissionNeededTitle": "مطلوب إذن الموقع",
+        "enableInSettingsTitle": "فعّل الموقع من الإعدادات",
+        "permissionDeniedPrompt": "يلزم الوصول إلى موقعك قبل تسجيل الدخول. هل تريد السماح الآن؟",
+        "locationBlockedPrompt": "تم حظر الوصول إلى الموقع. افتح الإعدادات وفعّله للمتابعة.",
+        "goToSettings": "الذهاب إلى الإعدادات"
+    },
+    "AdhocOrderCard": {
+        "acceptOrder": "قبول الطلب",
+        "dismissOrder": "رفض الطلب",
+        "acceptingAndAssigningOrder": "جارٍ قبول الطلب وتعيينه...",
+        "pickupDestination": "نقطة الاستلام",
+        "cancel": "إلغاء",
+        "accept": "قبول",
+        "ok": "حسنًا",
+        "acceptAdHocOrder": "قبول هذا الطلب؟",
+        "dismissAdHocOrder": "رفض هذا الطلب؟"
+    },
+    "AlertPromptBox": {
+        "cancel": "إلغاء"
+    },
+    "Buttons": {
+        "continueWithPhone": "المتابعة برقم الهاتف"
+    },
+    "CameraCapture": {
+        "loadingCameraOrAwaitingPermission": "جارٍ فتح الكاميرا أو انتظار الإذن...",
+        "gallery": "المعرض",
+        "snap": "التقاط",
+        "done": "تم",
+        "close": "إغلاق",
+        "unableToSelectPhotos": "تعذّر اختيار الصور.",
+        "photoCaptured": "تم التقاط الصورة."
+    },
+    "ChatKeyboard": {
+        "typeAMessage": "اكتب رسالة"
+    },
+    "ChatParticipants": {
+        "noParticipants": "لا يوجد مشاركون"
+    },
+    "Comment": {
+        "cancel": "إلغاء",
+        "save": "حفظ",
+        "reply": "رد",
+        "edit": "تعديل",
+        "delete": "حذف",
+        "publishReply": "نشر الرد",
+        "writeAReply": "اكتب ردًا...",
+        "deleteComment": "حذف التعليق"
+    },
+    "CommentThread": {
+        "publishComment": "نشر التعليق",
+        "writeAComment": "اكتب تعليقًا...",
+        "invalidComment": "تعليق غير صالح"
+    },
+    "CurrentDestinationSelect": {
+        "selectDestination": "اختر الوجهة"
+    },
+    "DestinationChangedAlert": {
+        "waypointCompleted": "تم إنجاز المحطة",
+        "activityForWaypoint": "نشاط المحطة",
+        "yourCurrentDestinationHasChangedTo": "تغيّرت وجهتك الحالية إلى",
+        "continue": "متابعة"
+    },
+    "FuelReportForm": {
+        "status": "الحالة",
+        "odometer": "عداد المسافات",
+        "volume": "الكمية",
+        "cost": "التكلفة",
+        "selectFuelReportStatus": "اختر حالة تقرير الوقود",
+        "inputYourCurrentOdometer": "أدخل قراءة العداد الحالية...",
+        "inputFuelVolume": "أدخل كمية الوقود...",
+        "inputFuelCosts": "أدخل تكلفة الوقود..."
+    },
+    "InstanceLinkHandler": {
+        "instanceLinkWasSuccessful": "تم الاتصال بالخادم بنجاح!"
+    },
+    "IssueForm": {
+        "issueType": "نوع المشكلة",
+        "issueCategory": "الفئة",
+        "issuePriority": "الأولوية",
+        "issueStatus": "الحالة",
+        "issueReport": "وصف المشكلة",
+        "selectIssueType": "اختر نوع المشكلة",
+        "selectIssueCategory": "اختر الفئة",
+        "selectIssuePriority": "اختر الأولوية",
+        "selectIssueStatus": "اختر الحالة",
+        "typeYourIssueReport": "صف المشكلة..."
+    },
+    "LocationPicker": {
+        "addNewLocation": "إضافة موقع جديد"
+    },
+    "MoneyInput": {
+        "searchCurrencies": "ابحث عن عملة"
+    },
+    "MultipleCustomerAvatars": {
+        "noCustomers": "لا يوجد عملاء"
+    },
+    "OrderActivitySelect": {
+        "requiresProofOfDelivery": "يتطلب إثبات التسليم",
+        "selectActivity": "اختر النشاط"
+    },
+    "OrderCard": {
+        "nA": "—"
+    },
+    "OrderCustomerCard": {
+        "call": "اتصال",
+        "email": "البريد الإلكتروني",
+        "chat": "الدردشة"
+    },
+    "OrderDocumentFiles": {
+        "noDocumentsOrFiles": "لا توجد مستندات أو ملفات.",
+        "view": "عرض",
+        "download": "تنزيل",
+        "downloadComplete": "اكتمل التنزيل",
+        "downloadFailed": "فشل التنزيل",
+        "error": "خطأ"
+    },
+    "OrderPayloadEntities": {
+        "emptyPayload": "لا توجد حمولة."
+    },
+    "OrderProofOfDelivery": {
+        "noProofOfDeliveryCaptured": "لا يوجد إثبات تسليم."
+    },
+    "PastOrderCard": {
+        "currentDestination": "الوجهة الحالية"
+    },
+    "PhoneInput": {
+        "enterPhoneNumber": "أدخل رقم الهاتف",
+        "searchCountry": "ابحث عن دولة"
+    },
+    "QrCodeScanner": {
+        "noCameraAvailable": "لا توجد كاميرا"
+    },
+    "UnitInput": {
+        "searchUnit": "ابحث عن وحدة"
+    },
+    "LocationContext": {
+        "allowFleetbaseNavigatorToAccessYour": "اسمح لـ Smayta Transporte بالوصول إلى موقعك",
+        "fleetbaseNavigatorCollectsPreciseLocationData": "يستخدم Smayta Transporte موقعك الدقيق ليتمكن فريق Smayta والعملاء من تتبع الرحلة مباشرة، حتى عند إغلاق التطبيق أو تشغيله في الخلفية. لا يُجمع الموقع إلا أثناء اتصالك ويُرسل بأمان إلى Smayta.",
+        "trackingNotificationTitle": "الموقع قيد الاستخدام",
+        "trackingNotificationText": "يشارك Smayta Transporte موقعك أثناء اتصالك."
+    },
+    "Useoauth": {
+        "appleSignInIsNotSupported": "تسجيل الدخول عبر Apple غير مدعوم على هذا الجهاز",
+        "appleSignInFailedMissingToken": "فشل تسجيل الدخول عبر Apple: الرمز أو رمز التفويض مفقود."
+    },
+    "DriverNavigator": {
+        "navigator": "Smayta Transporte",
+        "createANewFuelReport": "تقرير وقود جديد",
+        "createANewIssue": "مشكلة جديدة",
+        "dashboardTab": "الرئيسية",
+        "ordersTab": "الطلبات",
+        "reportsTab": "التقارير",
+        "chatTab": "الدردشة",
+        "accountTab": "الحساب"
+    },
+    "CoreStack": {
+        "connectionConfig": "إعدادات الاتصال"
+    },
+    "OrderStack": {
+        "orderHistory": "سجل الطلبات"
+    },
+    "ChatHomeScreen": {
+        "chats": "المحادثات"
+    },
+    "ChatParticipantsScreen": {
+        "remove": "إزالة",
+        "participants": "المشاركون",
+        "addParticipant": "إضافة مشارك",
+        "selectParticipant": "اختر مشاركًا",
+        "cancel": "إلغاء",
+        "removeParticipant": "إزالة المشارك",
+        "confirmation": "تأكيد"
+    },
+    "CreateAccountScreen": {
+        "createAccount": "إنشاء حساب",
+        "sendVerificationCode": "إرسال رمز التحقق",
+        "haveAnAccountAlreadyLogin": "لديك حساب؟ سجّل الدخول",
+        "enterYourName": "أدخل اسمك",
+        "invalidPhoneNumberProvided": "رقم الهاتف غير صالح."
+    },
+    "CreateAccountVerifyScreen": {
+        "verifyCode": "تحقق من الرمز",
+        "retry": "إعادة المحاولة"
+    },
+    "CreateChatChannelScreen": {
+        "unselect": "إلغاء التحديد",
+        "select": "تحديد",
+        "createNewChat": "محادثة جديدة",
+        "channelName": "اسم المحادثة",
+        "inputChatChannelName": "أدخل اسم المحادثة...",
+        "chatChannelNameIsRequired": "اسم المحادثة مطلوب."
+    },
+    "DriverAccountScreen": {
+        "enabled": "مفعّل",
+        "language": "اللغة"
+    },
+    "DriverDashboardScreen": {
+        "activeOrders": "الطلبات النشطة",
+        "speed": "السرعة",
+        "tracking": "التتبع",
+        "yes": "نعم",
+        "no": "لا",
+        "location": "الموقع",
+        "latitude": "خط العرض",
+        "longitude": "خط الطول",
+        "heading": "الاتجاه",
+        "altitude": "الارتفاع"
+    },
+    "DriverProfileScreen": {
+        "account": "الحساب",
+        "organization": "المؤسسة"
+    },
+    "EditAccountPropertyScreen": {
+        "save": "حفظ"
+    },
+    "EditLocationCoordScreen": {
+        "savePosition": "حفظ الموقع",
+        "reset": "إعادة تعيين"
+    },
+    "EditLocationScreen": {
+        "address": "العنوان",
+        "locationType": "نوع المكان",
+        "addressDetails": "تفاصيل العنوان",
+        "addAdditionalAddressDetails": "أضف تفاصيل إضافية للعنوان.",
+        "addressLabelOrName": "اسم العنوان",
+        "streetAddressOrPOBox": "الشارع والرقم أو صندوق البريد",
+        "aptSuiteUnitBuildingFloorEtc": "الشقة، المبنى، الطابق، إلخ.",
+        "optional": "اختياري",
+        "neighborhood": "الحي",
+        "cityOrTown": "المدينة أو البلدة",
+        "postalOrZipCode": "الرمز البريدي",
+        "additionalInstructionsForTheCourier": "تعليمات إضافية للناقل",
+        "whereExactlyShouldWeMeetYou": "أين نلتقي بالضبط؟",
+        "makeDefaultAddress": "تعيين كعنوان افتراضي",
+        "deleteAddress": "حذف العنوان",
+        "saveAddress": "حفظ العنوان",
+        "apartment": "شقة",
+        "house": "منزل",
+        "office": "مكتب",
+        "hotel": "فندق",
+        "hospital": "مستشفى",
+        "school": "مدرسة",
+        "other": "أخرى",
+        "addressSaved": "تم حفظ العنوان.",
+        "unableToSelectLocationType": "تعذّر اختيار نوع المكان."
+    },
+    "EntityScreen": {
+        "details": "التفاصيل",
+        "id": "المعرّف",
+        "internalId": "المرجع الداخلي",
+        "trackingNumber": "رقم التتبع",
+        "sku": "رمز المنتج",
+        "type": "النوع",
+        "dimensionsLXWXH": "الأبعاد (الطول × العرض × الارتفاع)",
+        "weight": "الوزن"
+    },
+    "FuelReportScreen": {
+        "deletingFuelReport": "جارٍ حذف تقرير الوقود...",
+        "cancel": "إلغاء",
+        "deleteFuelReport": "حذف تقرير الوقود",
+        "confirmDeletion": "تأكيد الحذف"
+    },
+    "InstanceLinkScreen": {
+        "fleetbaseHost": "الخادم",
+        "fleetbaseKey": "المفتاح",
+        "socketclusterHost": "خادم الإشعارات",
+        "socketclusterPort": "منفذ الإشعارات",
+        "socketclusterSecure": "اتصال آمن",
+        "saveChanges": "حفظ التغييرات",
+        "reset": "إعادة تعيين",
+        "inputHostOfFleetbaseInstance": "عنوان الخادم...",
+        "inputApiKeyForFleetbaseInstance": "مفتاح API للخادم...",
+        "inputSocketclusterHostForFleetbaseInstance": "خادم الإشعارات...",
+        "inputSocketclusterPortForFleetbaseInstance": "منفذ الإشعارات...",
+        "instanceConnectionConfigSavedSuccessfully": "تم حفظ إعدادات الاتصال.",
+        "instanceConnectionConfigResetSuccessfully": "تمت إعادة تعيين إعدادات الاتصال."
+    },
+    "IssueScreen": {
+        "deletingIssue": "جارٍ حذف المشكلة...",
+        "cancel": "إلغاء",
+        "deleteIssue": "حذف المشكلة",
+        "confirmDeletion": "تأكيد الحذف"
+    },
+    "OrderScreen": {
+        "acceptOrder": "قبول الطلب",
+        "dismissOrder": "رفض الطلب",
+        "startOrder": "بدء الطلب",
+        "updateActivity": "تحديث الحالة",
+        "startNavigation": "بدء الملاحة",
+        "orderInformation": "معلومات الطلب",
+        "id": "المعرّف",
+        "internalId": "المرجع الداخلي",
+        "trackingNumber": "رقم التتبع",
+        "proofOfDelivery": "إثبات التسليم",
+        "type": "النوع",
+        "dateCreated": "تاريخ الإنشاء",
+        "dateScheduled": "التاريخ المحدد",
+        "dateDispatched": "تاريخ الإرسال",
+        "orderRoute": "المسار",
+        "orderProgress": "التقدم",
+        "currentDestination": "الوجهة الحالية",
+        "nextDestination": "الوجهة التالية",
+        "totalDistance": "المسافة الإجمالية",
+        "startTime": "وقت البدء",
+        "currentEta": "وقت الوصول المتوقع",
+        "ect": "وقت الانتهاء المتوقع",
+        "orderNotes": "ملاحظات الطلب",
+        "orderProof": "إثباتات الطلب",
+        "orderPayload": "الحمولة",
+        "customer": "العميل",
+        "orderDocumentsFiles": "المستندات والملفات",
+        "orderComments": "التعليقات",
+        "continue": "متابعة",
+        "yes": "نعم",
+        "cancel": "إلغاء",
+        "accept": "قبول",
+        "ok": "حسنًا",
+        "waypointCompleted": "تم إنجاز المحطة",
+        "orderNotDispatchedYet": "لم يتم إرسال الطلب بعد",
+        "warning": "تنبيه!",
+        "acceptAdHocOrder": "قبول هذا الطلب؟",
+        "dismissAdHocOrder": "رفض هذا الطلب؟"
+    },
+    "PhoneLoginScreen": {
+        "loginViaSms": "تسجيل الدخول عبر SMS",
+        "sendVerificationCode": "إرسال رمز التحقق",
+        "home": "الرئيسية",
+        "invalidPhoneNumberProvided": "رقم الهاتف غير صالح."
+    },
+    "PhoneLoginVerifyScreen": {
+        "verifyCode": "تحقق من الرمز",
+        "retry": "إعادة المحاولة",
+        "unableToSendSms": "تعذّر إرسال الرسالة القصيرة.",
+        "yourVerificationCodeWasSentVia": "تم إرسال رمز التحقق عبر"
+    }
+}

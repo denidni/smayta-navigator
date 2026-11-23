@@ -9,6 +9,7 @@ import { WaypointCircle } from './OrderWaypointList';
 import OrderCustomerCard from './OrderCustomerCard';
 import { formatCurrency } from '../utils/format';
 
+import { translate } from '../utils/localize';
 const ENTITY_COLUMN_WIDTH = 100;
 const OrderPayloadEntities = ({ order, onPress }) => {
     const theme = useTheme();
@@ -48,7 +49,7 @@ const OrderPayloadEntities = ({ order, onPress }) => {
     if (entities.length === 0 && entitiesByDestination.length === 0) {
         return (
             <YStack py='$5' alignItems='center' justifyContent='center'>
-                <Text color='$textSecondary'>Empty Payload.</Text>
+                <Text color='$textSecondary'>{translate('OrderPayloadEntities.emptyPayload')}</Text>
             </YStack>
         );
     }

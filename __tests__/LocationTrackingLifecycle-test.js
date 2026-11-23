@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
 import { View } from 'react-native';
-import BackgroundGeolocation from 'react-native-background-geolocation';
+import BackgroundGeolocation from '../src/utils/background-location';
 import BackgroundFetch from 'react-native-background-fetch';
 import { check, RESULTS } from 'react-native-permissions';
 import { LocationProvider, isLocationTrackingAllowed } from '../src/contexts/LocationContext';
@@ -19,7 +19,7 @@ jest.mock('react-native-permissions', () => ({
     RESULTS: { DENIED: 'denied', BLOCKED: 'blocked', GRANTED: 'granted' },
 }));
 
-jest.mock('react-native-background-geolocation', () => ({
+jest.mock('../src/utils/background-location', () => ({
     __esModule: true,
     default: {
         DESIRED_ACCURACY_HIGH: 1,
@@ -44,6 +44,10 @@ jest.mock('react-native-background-fetch', () => ({
 jest.mock('@fleetbase/sdk', () => ({
     Place: class Place {},
     Point: class Point {},
+}));
+
+jest.mock('../src/utils/localize', () => ({
+    translate: (key) => key,
 }));
 
 jest.mock('../src/contexts/AuthContext', () => ({

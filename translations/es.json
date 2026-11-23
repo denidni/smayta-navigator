@@ -1,0 +1,421 @@
+{
+    "common": {
+        "fleetbase": "Fleetbase",
+        "navigator": "Smayta Transporte",
+        "apiKey": "Clave de API",
+        "cancel": "Cancelar",
+        "new": "Nuevo",
+        "create": "Crear",
+        "save": "Guardar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "update": "Actualizar",
+        "service": "Servicio",
+        "retry": "Reintentar",
+        "loading": "Cargando...",
+        "confirm": "Confirmar",
+        "confirmation": "Confirmación",
+        "ok": "Aceptar",
+        "done": "Hecho",
+        "tryAgain": "Volver a intentar"
+    },
+    "orderStatuses": {
+        "created": "Creado",
+        "preparing": "En preparación",
+        "dispatched": "Asignado",
+        "driver_enroute": "Conductor en camino",
+        "pending": "Pendiente",
+        "in_progress": "En curso",
+        "completed": "Completado"
+    },
+    "BootScreen": {
+        "missingRequiredConfigurationKeys": "Faltan claves de configuración obligatorias"
+    },
+    "AccountScreen": {
+        "changeProfilePhotoOptions": {
+            "takePhoto": "Hacer foto",
+            "photoLibrary": "Galería de fotos",
+            "deleteProfilePhoto": "Eliminar foto de perfil"
+        },
+        "profilePhoto": "Foto de perfil",
+        "email": "Correo electrónico",
+        "phoneNumber": "Teléfono",
+        "name": "Nombre",
+        "language": "Idioma",
+        "theme": "Tema",
+        "deleteAccount": "Eliminar cuenta",
+        "termsOfService": "Condiciones del servicio",
+        "privacyPolicy": "Política de privacidad",
+        "tracking": "Seguimiento",
+        "account": "Cuenta",
+        "dataProtection": "Protección de datos",
+        "clearCache": "Borrar caché",
+        "signOut": "Cerrar sesión",
+        "signedOut": "Sesión cerrada.",
+        "cacheCleared": "Caché borrada.",
+        "schemeChanged": "Ahora en modo {{selectedScheme}}.",
+        "languageChanged": "Ahora en {{selectedLanguage}}.",
+        "photoChanged": "Foto de perfil cambiada.",
+        "photoRemoved": "Foto de perfil eliminada.",
+        "sourceCode": "Código fuente"
+    },
+    "ProfileScreen": {
+        "organizationChanged": "Ahora en la organización {{selectedOrganization}}."
+    },
+    "AddNewLocationScreen": {
+        "addNewAddress": "Añadir dirección",
+        "streetName": "Calle y número",
+        "weThinkYoureAroundHere": "Creemos que estás por aquí",
+        "cantFindYourAddress": "¿No encuentras tu dirección?",
+        "useMapInstead": "Usa el mapa"
+    },
+    "SetupWarningScreen": {
+        "configurationMissing": "¡Falta configuración!",
+        "unconfiguredApp": "Parece que la app no está bien configurada.",
+        "envMissing": "no está en el entorno."
+    },
+    "DriverReportScreen": {
+        "issues": "Incidencias",
+        "fuelReports": "Repostajes"
+    },
+    "LocationPermissionScreen": {
+        "enableLocationServices": "Uso de tu ubicación",
+        "enableLocationPrompt": "Smayta Transporte usa tu ubicación exacta para que el equipo de Smayta y los clientes sigan el viaje en tiempo real, también con la app cerrada o en segundo plano. Solo se recoge mientras estás conectado y se envía de forma segura a Smayta.",
+        "shareAndContinue": "Permitir ubicación y continuar",
+        "privacyPolicy": "Política de privacidad",
+        "permissionNeededTitle": "Hace falta permiso de ubicación",
+        "enableInSettingsTitle": "Activa la ubicación en Ajustes",
+        "permissionDeniedPrompt": "Para entrar hace falta acceso a tu ubicación. ¿Quieres permitirlo ahora?",
+        "locationBlockedPrompt": "El acceso a la ubicación está bloqueado. Abre Ajustes y actívalo para continuar.",
+        "goToSettings": "Ir a Ajustes"
+    },
+    "AdhocOrderCard": {
+        "acceptOrder": "Aceptar viaje",
+        "dismissOrder": "Rechazar viaje",
+        "acceptingAndAssigningOrder": "Aceptando y asignando el viaje...",
+        "pickupDestination": "Recogida",
+        "cancel": "Cancelar",
+        "accept": "Aceptar",
+        "ok": "Aceptar",
+        "acceptAdHocOrder": "¿Aceptar este viaje?",
+        "dismissAdHocOrder": "¿Rechazar este viaje?"
+    },
+    "AlertPromptBox": {
+        "cancel": "Cancelar"
+    },
+    "Buttons": {
+        "continueWithPhone": "Entrar con el teléfono"
+    },
+    "CameraCapture": {
+        "loadingCameraOrAwaitingPermission": "Abriendo la cámara o esperando permiso...",
+        "gallery": "Galería",
+        "snap": "Foto",
+        "done": "Hecho",
+        "close": "Cerrar",
+        "unableToSelectPhotos": "No se han podido elegir las fotos.",
+        "photoCaptured": "Foto hecha."
+    },
+    "ChatKeyboard": {
+        "typeAMessage": "Escribe un mensaje"
+    },
+    "ChatParticipants": {
+        "noParticipants": "Sin participantes"
+    },
+    "Comment": {
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "reply": "Responder",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "publishReply": "Publicar respuesta",
+        "writeAReply": "Escribe una respuesta...",
+        "deleteComment": "Eliminar comentario"
+    },
+    "CommentThread": {
+        "publishComment": "Publicar comentario",
+        "writeAComment": "Escribe un comentario...",
+        "invalidComment": "Comentario no válido"
+    },
+    "CurrentDestinationSelect": {
+        "selectDestination": "Elige destino"
+    },
+    "DestinationChangedAlert": {
+        "waypointCompleted": "Parada completada",
+        "activityForWaypoint": "Actividad de la parada",
+        "yourCurrentDestinationHasChangedTo": "Tu destino actual ha cambiado a",
+        "continue": "Continuar"
+    },
+    "FuelReportForm": {
+        "status": "Estado",
+        "odometer": "Cuentakilómetros",
+        "volume": "Litros",
+        "cost": "Importe",
+        "selectFuelReportStatus": "Elige el estado del repostaje",
+        "inputYourCurrentOdometer": "Kilómetros actuales...",
+        "inputFuelVolume": "Litros repostados...",
+        "inputFuelCosts": "Importe del repostaje..."
+    },
+    "InstanceLinkHandler": {
+        "instanceLinkWasSuccessful": "¡Conectado al servidor!"
+    },
+    "IssueForm": {
+        "issueType": "Tipo de incidencia",
+        "issueCategory": "Categoría",
+        "issuePriority": "Prioridad",
+        "issueStatus": "Estado",
+        "issueReport": "Descripción",
+        "selectIssueType": "Elige el tipo de incidencia",
+        "selectIssueCategory": "Elige la categoría",
+        "selectIssuePriority": "Elige la prioridad",
+        "selectIssueStatus": "Elige el estado",
+        "typeYourIssueReport": "Describe la incidencia..."
+    },
+    "LocationPicker": {
+        "addNewLocation": "Añadir dirección"
+    },
+    "MoneyInput": {
+        "searchCurrencies": "Buscar moneda"
+    },
+    "MultipleCustomerAvatars": {
+        "noCustomers": "Sin clientes"
+    },
+    "OrderActivitySelect": {
+        "requiresProofOfDelivery": "Pide prueba de entrega",
+        "selectActivity": "Elige actividad"
+    },
+    "OrderCard": {
+        "nA": "—"
+    },
+    "OrderCustomerCard": {
+        "call": "Llamar",
+        "email": "Correo electrónico",
+        "chat": "Chat"
+    },
+    "OrderDocumentFiles": {
+        "noDocumentsOrFiles": "Sin documentos ni archivos.",
+        "view": "Ver",
+        "download": "Descargar",
+        "downloadComplete": "Descarga completada",
+        "downloadFailed": "No se ha podido descargar",
+        "error": "Error"
+    },
+    "OrderPayloadEntities": {
+        "emptyPayload": "Sin carga."
+    },
+    "OrderProofOfDelivery": {
+        "noProofOfDeliveryCaptured": "Sin prueba de entrega."
+    },
+    "PastOrderCard": {
+        "currentDestination": "Destino actual"
+    },
+    "PhoneInput": {
+        "enterPhoneNumber": "Número de teléfono",
+        "searchCountry": "Buscar país"
+    },
+    "QrCodeScanner": {
+        "noCameraAvailable": "No hay cámara"
+    },
+    "UnitInput": {
+        "searchUnit": "Buscar unidad"
+    },
+    "LocationContext": {
+        "allowFleetbaseNavigatorToAccessYour": "Permite a Smayta Transporte usar tu ubicación",
+        "fleetbaseNavigatorCollectsPreciseLocationData": "Smayta Transporte usa tu ubicación exacta para que el equipo de Smayta y los clientes sigan el viaje en tiempo real, también con la app cerrada o en segundo plano. Solo se recoge mientras estás conectado y se envía de forma segura a Smayta.",
+        "trackingNotificationTitle": "Ubicación en uso",
+        "trackingNotificationText": "Smayta Transporte envía tu posición mientras estás conectado."
+    },
+    "Useoauth": {
+        "appleSignInIsNotSupported": "Este dispositivo no admite iniciar sesión con Apple",
+        "appleSignInFailedMissingToken": "No se ha podido entrar con Apple: falta el token o el código de autorización."
+    },
+    "DriverNavigator": {
+        "navigator": "Smayta Transporte",
+        "createANewFuelReport": "Nuevo repostaje",
+        "createANewIssue": "Nueva incidencia",
+        "dashboardTab": "Inicio",
+        "ordersTab": "Viajes",
+        "reportsTab": "Informes",
+        "chatTab": "Chat",
+        "accountTab": "Cuenta"
+    },
+    "CoreStack": {
+        "connectionConfig": "Conexión"
+    },
+    "OrderStack": {
+        "orderHistory": "Historial de viajes"
+    },
+    "ChatHomeScreen": {
+        "chats": "Chats"
+    },
+    "ChatParticipantsScreen": {
+        "remove": "Quitar",
+        "participants": "Participantes",
+        "addParticipant": "Añadir participante",
+        "selectParticipant": "Elige participante",
+        "cancel": "Cancelar",
+        "removeParticipant": "Quitar participante",
+        "confirmation": "Confirmación"
+    },
+    "CreateAccountScreen": {
+        "createAccount": "Crear cuenta",
+        "sendVerificationCode": "Enviar código",
+        "haveAnAccountAlreadyLogin": "¿Ya tienes cuenta? Entra",
+        "enterYourName": "Tu nombre",
+        "invalidPhoneNumberProvided": "El número de teléfono no es válido."
+    },
+    "CreateAccountVerifyScreen": {
+        "verifyCode": "Comprobar código",
+        "retry": "Reintentar"
+    },
+    "CreateChatChannelScreen": {
+        "unselect": "Quitar",
+        "select": "Elegir",
+        "createNewChat": "Nuevo chat",
+        "channelName": "Nombre del chat",
+        "inputChatChannelName": "Nombre del chat...",
+        "chatChannelNameIsRequired": "Pon un nombre al chat."
+    },
+    "DriverAccountScreen": {
+        "enabled": "Activado",
+        "language": "Idioma"
+    },
+    "DriverDashboardScreen": {
+        "activeOrders": "Viajes en curso",
+        "speed": "Velocidad",
+        "tracking": "Seguimiento",
+        "yes": "Sí",
+        "no": "No",
+        "location": "Ubicación",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "heading": "Rumbo",
+        "altitude": "Altitud"
+    },
+    "DriverProfileScreen": {
+        "account": "Cuenta",
+        "organization": "Organización"
+    },
+    "EditAccountPropertyScreen": {
+        "save": "Guardar"
+    },
+    "EditLocationCoordScreen": {
+        "savePosition": "Guardar posición",
+        "reset": "Restablecer"
+    },
+    "EditLocationScreen": {
+        "address": "Dirección",
+        "locationType": "Tipo de lugar",
+        "addressDetails": "Detalles de la dirección",
+        "addAdditionalAddressDetails": "Añade más detalles de la dirección.",
+        "addressLabelOrName": "Nombre de la dirección",
+        "streetAddressOrPOBox": "Calle y número o apartado de correos",
+        "aptSuiteUnitBuildingFloorEtc": "Piso, puerta, portal, edificio...",
+        "optional": "Opcional",
+        "neighborhood": "Barrio",
+        "cityOrTown": "Ciudad o pueblo",
+        "postalOrZipCode": "Código postal",
+        "additionalInstructionsForTheCourier": "Indicaciones para el transportista",
+        "whereExactlyShouldWeMeetYou": "¿Dónde exactamente nos vemos?",
+        "makeDefaultAddress": "Usar como dirección principal",
+        "deleteAddress": "Eliminar dirección",
+        "saveAddress": "Guardar dirección",
+        "apartment": "Piso",
+        "house": "Casa",
+        "office": "Oficina",
+        "hotel": "Hotel",
+        "hospital": "Hospital",
+        "school": "Colegio",
+        "other": "Otro",
+        "addressSaved": "Dirección guardada.",
+        "unableToSelectLocationType": "No se ha podido elegir el tipo de lugar."
+    },
+    "EntityScreen": {
+        "details": "Detalles",
+        "id": "ID",
+        "internalId": "Referencia interna",
+        "trackingNumber": "Número de seguimiento",
+        "sku": "Referencia",
+        "type": "Tipo",
+        "dimensionsLXWXH": "Medidas (largo × ancho × alto)",
+        "weight": "Peso"
+    },
+    "FuelReportScreen": {
+        "deletingFuelReport": "Eliminando repostaje...",
+        "cancel": "Cancelar",
+        "deleteFuelReport": "Eliminar repostaje",
+        "confirmDeletion": "Confirmar eliminación"
+    },
+    "InstanceLinkScreen": {
+        "fleetbaseHost": "SERVIDOR",
+        "fleetbaseKey": "CLAVE",
+        "socketclusterHost": "SERVIDOR DE AVISOS",
+        "socketclusterPort": "PUERTO DE AVISOS",
+        "socketclusterSecure": "CONEXIÓN SEGURA",
+        "saveChanges": "Guardar cambios",
+        "reset": "Restablecer",
+        "inputHostOfFleetbaseInstance": "Dirección del servidor...",
+        "inputApiKeyForFleetbaseInstance": "Clave de API del servidor...",
+        "inputSocketclusterHostForFleetbaseInstance": "Servidor de avisos...",
+        "inputSocketclusterPortForFleetbaseInstance": "Puerto de avisos...",
+        "instanceConnectionConfigSavedSuccessfully": "Conexión guardada.",
+        "instanceConnectionConfigResetSuccessfully": "Conexión restablecida."
+    },
+    "IssueScreen": {
+        "deletingIssue": "Eliminando incidencia...",
+        "cancel": "Cancelar",
+        "deleteIssue": "Eliminar incidencia",
+        "confirmDeletion": "Confirmar eliminación"
+    },
+    "OrderScreen": {
+        "acceptOrder": "Aceptar viaje",
+        "dismissOrder": "Rechazar viaje",
+        "startOrder": "Empezar viaje",
+        "updateActivity": "Actualizar estado",
+        "startNavigation": "Navegar",
+        "orderInformation": "Datos del viaje",
+        "id": "ID",
+        "internalId": "Referencia interna",
+        "trackingNumber": "Número de seguimiento",
+        "proofOfDelivery": "Prueba de entrega",
+        "type": "Tipo",
+        "dateCreated": "Creado",
+        "dateScheduled": "Programado",
+        "dateDispatched": "Asignado",
+        "orderRoute": "Ruta",
+        "orderProgress": "Progreso",
+        "currentDestination": "Destino actual",
+        "nextDestination": "Siguiente destino",
+        "totalDistance": "Distancia total",
+        "startTime": "Hora de inicio",
+        "currentEta": "Llegada estimada",
+        "ect": "Fin estimado",
+        "orderNotes": "Notas del viaje",
+        "orderProof": "Pruebas del viaje",
+        "orderPayload": "Carga",
+        "customer": "Cliente",
+        "orderDocumentsFiles": "Documentos y archivos",
+        "orderComments": "Comentarios",
+        "continue": "Continuar",
+        "yes": "Sí",
+        "cancel": "Cancelar",
+        "accept": "Aceptar",
+        "ok": "Aceptar",
+        "waypointCompleted": "Parada completada",
+        "orderNotDispatchedYet": "Viaje aún no asignado",
+        "warning": "¡Atención!",
+        "acceptAdHocOrder": "¿Aceptar este viaje?",
+        "dismissAdHocOrder": "¿Rechazar este viaje?"
+    },
+    "PhoneLoginScreen": {
+        "loginViaSms": "Entrar por SMS",
+        "sendVerificationCode": "Enviar código",
+        "home": "Inicio",
+        "invalidPhoneNumberProvided": "El número de teléfono no es válido."
+    },
+    "PhoneLoginVerifyScreen": {
+        "verifyCode": "Comprobar código",
+        "retry": "Reintentar",
+        "unableToSendSms": "No se ha podido enviar el SMS.",
+        "yourVerificationCodeWasSentVia": "Te hemos enviado el código por"
+    }
+}

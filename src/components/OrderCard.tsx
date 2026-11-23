@@ -15,6 +15,7 @@ import MultipleCustomerAvatars from './MultipleCustomerAvatars';
 import LoadingText from './LoadingText';
 import Badge from './Badge';
 
+import { translate } from '../utils/localize';
 const INFO_FIELD_VALUE_MIN_HEIGHT = 30;
 export const OrderCard = ({ order, onPress }) => {
     const theme = useTheme();
@@ -102,7 +103,7 @@ export const OrderCard = ({ order, onPress }) => {
                                                         </>
                                                     ) : (
                                                         <Text color='$textSecondary' fontSize={12}>
-                                                            N/A
+                                                            {translate('OrderCard.nA')}
                                                         </Text>
                                                     )}
                                                 </>

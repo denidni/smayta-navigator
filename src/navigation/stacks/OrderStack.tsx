@@ -6,6 +6,7 @@ import { PortalHost } from '@gorhom/portal';
 import { getTheme } from '../../utils';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import { translate } from '../../utils/localize';
 export const Order = {
     screen: OrderScreen,
     options: ({ navigation, route }) => {
@@ -50,7 +51,7 @@ export const OrderHistory = {
     screen: OrderHistoryScreen,
     options: ({ navigation }) => {
         return {
-            title: 'Order History',
+            title: translate('OrderStack.orderHistory'),
             headerTitleStyle: {
                 color: getTheme('textPrimary'),
             },

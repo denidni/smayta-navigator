@@ -14,6 +14,7 @@ import Spacer from './Spacer';
 import useAppTheme from '../hooks/use-app-theme';
 import SafeSpinner from './SafeSpinner';
 
+import { translate } from '../utils/localize';
 const CurrentDestinationSelect = ({ onChange, destination, waypoints = [], snapTo = '100%', isLoading = false, ...props }) => {
     const { isDarkMode } = useAppTheme();
     const theme = useTheme();
@@ -97,7 +98,7 @@ const CurrentDestinationSelect = ({ onChange, destination, waypoints = [], snapT
                         <YStack>
                             <XStack alignItems='center' justifyContent='space-between' px='$5' mb='$4'>
                                 <Text fontSize='$6' color='$textPrimary' fontWeight='bold'>
-                                    Select destination
+                                    {translate('CurrentDestinationSelect.selectDestination')}
                                 </Text>
                             </XStack>
                             <BottomSheetFlatList
