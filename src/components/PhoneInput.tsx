@@ -1,14 +1,50 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { FlatList, TextInput, Keyboard } from 'react-native';
 import { countries, getEmojiFlag } from 'countries-list';
-import BottomSheet, { BottomSheetView, BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useTheme, View, Text, Button, XStack, YStack, Input } from 'tamagui';
 import { Portal } from '@gorhom/portal';
-import { getCountryByPhoneCode, getCountryByISO2, parsePhoneNumber, debounce } from '../utils';
+import { getCountryByPhoneCode, getCountryByISO2, parsePhoneNumber, debounce, config, toArray } from '../utils';
 import useAppTheme from '../hooks/use-app-theme';
 
-import { translate } from '../utils/localize';
-function getDefaultValues(value = null, fallbackCountry = 'US') {
+import { translate, getLocale } from '../utils/localize';
+
+// País inicial y países que van primero en la lista; se pueden cambiar en el .env.
+const DEFAULT_COUNTRY = String(config('DEFAULT_COUNTRY', 'ES') || 'ES').toUpperCase();
+const PRIORITY_COUNTRIES = toArray(config('PRIORITY_COUNTRIES', 'ES,DZ'))
+    .map((code) => String(code).trim().toUpperCase())
+    .filter((code) => code && countries[code]);
+
+// Nombre del país en el idioma de la app si el motor JS lo permite; si no, en inglés.
+function getCountryDisplayName(code, fallbackName, locale) {
+    try {
+        if (typeof Intl !== 'undefined' && typeof Intl.DisplayNames === 'function') {
+            const name = new Intl.DisplayNames([locale], { type: 'region' }).of(code);
+            if (name && name !== code) {
+                return name;
+            }
+        }
+    } catch (error) {
+        // Sin soporte de Intl.DisplayNames: se usa el nombre en inglés.
+    }
+    return fallbackName;
+}
+
+function buildCountryList(locale) {
+    const list = Object.entries(countries).map(([code, details]) => ({
+        code,
+        name: getCountryDisplayName(code, details.name, locale),
+        englishName: details.name,
+        nativeName: details.native,
+        phone: details.phone[0],
+        emoji: getEmojiFlag(code),
+    }));
+    const priority = PRIORITY_COUNTRIES.map((code) => list.find((country) => country.code === code)).filter(Boolean);
+    const rest = list.filter((country) => !PRIORITY_COUNTRIES.includes(country.code)).sort((a, b) => a.name.localeCompare(b.name, locale));
+    return [...priority, ...rest];
+}
+
+function getDefaultValues(value = null, fallbackCountry = DEFAULT_COUNTRY) {
     if (typeof value === 'string' && value.startsWith('+')) {
         const segments = parsePhoneNumber(value);
         return {
@@ -24,14 +60,7 @@ function getDefaultValues(value = null, fallbackCountry = 'US') {
     };
 }
 
-const countryList = Object.entries(countries).map(([code, details]) => ({
-    code,
-    name: details.name,
-    phone: details.phone[0],
-    emoji: getEmojiFlag(code),
-}));
-
-const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 'US', size = '$5', wrapperProps = {} }) => {
+const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = DEFAULT_COUNTRY, size = '$5', wrapperProps = {} }) => {
     const defaultValue = getDefaultValues(value, defaultCountryCode);
     const theme = useTheme();
     const { isDarkMode } = useAppTheme();
@@ -44,12 +73,24 @@ const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 
     const snapPoints = useMemo(() => ['50%', '75%'], []);
     const backgroundColor = bg ? bg : isDarkMode ? '$surface' : '$gray-200';
 
+    const locale = getLocale();
+    const countryList = useMemo(() => buildCountryList(locale), [locale]);
+
     const filteredCountries = useMemo(() => {
-        return countryList.filter(({ name, code, phone }) => {
-            const lowerSearch = searchTerm.toLowerCase();
-            return name.toLowerCase().includes(lowerSearch) || code.toLowerCase().includes(lowerSearch) || String(phone).includes(lowerSearch);
+        const lowerSearch = searchTerm.trim().toLowerCase().replace(/^\+/, '');
+        if (!lowerSearch) {
+            return countryList;
+        }
+        return countryList.filter(({ name, englishName, nativeName, code, phone }) => {
+            return (
+                name.toLowerCase().includes(lowerSearch) ||
+                englishName.toLowerCase().includes(lowerSearch) ||
+                String(nativeName ?? '').toLowerCase().includes(lowerSearch) ||
+                code.toLowerCase().includes(lowerSearch) ||
+                String(phone).startsWith(lowerSearch)
+            );
         });
-    }, [searchTerm]);
+    }, [searchTerm, countryList]);
 
     const openBottomSheet = () => {
         phoneInputRef.current?.blur();
@@ -141,39 +182,41 @@ const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 
                             }}
                         />
                     </YStack>
-                    <BottomSheetView
-                        style={{ flex: 1, backgroundColor: theme.background.val, paddingHorizontal: 8, borderColor: theme.borderColorWithShadow.val, borderWidth: 1, borderTopWidth: 0 }}
-                    >
-                        <BottomSheetFlatList
-                            data={filteredCountries}
-                            keyExtractor={(item) => item.code}
-                            renderItem={({ item }) => (
-                                <Button
-                                    size='$4'
-                                    onPress={() => handleCountrySelect({ code: item.code, phone: item.phone })}
-                                    bg='$surface'
-                                    justifyContent='space-between'
-                                    space='$2'
-                                    mb='$2'
-                                    px='$3'
-                                    hoverStyle={{
-                                        scale: 0.9,
-                                        opacity: 0.5,
-                                    }}
-                                    pressStyle={{
-                                        scale: 0.9,
-                                        opacity: 0.5,
-                                    }}
-                                >
-                                    <XStack alignItems='center' space='$2'>
-                                        <Text>{item.emoji}</Text>
-                                        <Text>{item.name}</Text>
-                                    </XStack>
-                                    <Text>+{item.phone}</Text>
-                                </Button>
-                            )}
-                        />
-                    </BottomSheetView>
+                    {/* La lista va directamente dentro del panel: envuelta en BottomSheetView no se puede desplazar. */}
+                    <BottomSheetFlatList
+                        data={filteredCountries}
+                        keyExtractor={(item) => item.code}
+                        keyboardShouldPersistTaps='handled'
+                        style={{ flex: 1, backgroundColor: theme.background.val, borderColor: theme.borderColorWithShadow.val, borderWidth: 1, borderTopWidth: 0 }}
+                        contentContainerStyle={{ paddingHorizontal: 8, paddingBottom: 24 }}
+                        renderItem={({ item }) => (
+                            <Button
+                                size='$4'
+                                onPress={() => handleCountrySelect({ code: item.code, phone: item.phone })}
+                                bg='$surface'
+                                justifyContent='space-between'
+                                space='$2'
+                                mb='$2'
+                                px='$3'
+                                hoverStyle={{
+                                    scale: 0.9,
+                                    opacity: 0.5,
+                                }}
+                                pressStyle={{
+                                    scale: 0.9,
+                                    opacity: 0.5,
+                                }}
+                            >
+                                <XStack alignItems='center' space='$2' flexShrink={1}>
+                                    <Text>{item.emoji}</Text>
+                                    <Text numberOfLines={1} flexShrink={1}>
+                                        {item.name}
+                                    </Text>
+                                </XStack>
+                                <Text>+{item.phone}</Text>
+                            </Button>
+                        )}
+                    />
                 </BottomSheet>
             </Portal>
         </YStack>
