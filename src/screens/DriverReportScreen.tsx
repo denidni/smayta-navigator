@@ -16,6 +16,7 @@ import Spacer from '../components/Spacer';
 import useStorage from '../hooks/use-storage';
 import useFleetbase from '../hooks/use-fleetbase';
 
+import { translate } from '../utils/localize';
 const DriverReportScreen = () => {
     const theme = useTheme();
     const navigation = useNavigation();
@@ -27,8 +28,8 @@ const DriverReportScreen = () => {
     const [currentTab, setCurrentTab] = useStorage('current_reports_tab', 'issue');
     const [isRefreshing, setIsRefreshing] = useState(false);
     const reportOptions = [
-        { value: 'issue', label: 'Issues' },
-        { value: 'fuel-report', label: 'Fuel Reports' },
+        { value: 'issue', label: translate('DriverReportScreen.issues') },
+        { value: 'fuel-report', label: translate('DriverReportScreen.fuelReports') },
     ];
     const currentIndex = reportOptions.findIndex((option) => option.value === currentTab);
     const content = useMemo(() => (currentTab === 'issue' ? issues : fuelReports), [currentTab, issues, fuelReports]);

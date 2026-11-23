@@ -10,6 +10,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { navigatorConfig } from '../utils';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { translate } from '../utils/localize';
 const PhoneLoginVerifyScreen = () => {
     const navigation = useNavigation();
     const theme = useTheme();
@@ -52,7 +53,7 @@ const PhoneLoginVerifyScreen = () => {
                 <Button size='$5' onPress={() => handleVerifyCode(code)} bg='$primary' width='100%' opacity={isVerifyingCode ? 0.75 : 1} disabled={isVerifyingCode} rounded>
                     <Button.Icon>{isVerifyingCode ? <Spinner color='$white' /> : <FontAwesomeIcon icon={faCheck} color={theme.white.val} />}</Button.Icon>
                     <Button.Text color='$gray-200' fontWeight='bold'>
-                        Verify Code
+                        {translate('PhoneLoginVerifyScreen.verifyCode')}
                     </Button.Text>
                 </Button>
                 <Button size='$5' onPress={handleRetry} bg='$secondary' width='100%' rounded>
@@ -60,7 +61,7 @@ const PhoneLoginVerifyScreen = () => {
                         <FontAwesomeIcon icon={faArrowRotateRight} color={theme['gray-500'].val} />
                     </Button.Icon>
                     <Button.Text color='$textPrimary' fontWeight='bold'>
-                        Retry
+                        {translate('PhoneLoginVerifyScreen.retry')}
                     </Button.Text>
                 </Button>
                 {loginMethod === 'email' && (
@@ -71,10 +72,10 @@ const PhoneLoginVerifyScreen = () => {
                             </YStack>
                             <YStack flex={1}>
                                 <Text fontSize={15} color='$infoText' fontWeight='bold'>
-                                    Unable to send SMS.
+                                    {translate('PhoneLoginVerifyScreen.unableToSendSms')}
                                 </Text>
                                 <Text fontSize={15} color='$infoText'>
-                                    Your verification code was sent via <Text fontWeight='bold'>{loginMethod}</Text>.
+                                    {translate('PhoneLoginVerifyScreen.yourVerificationCodeWasSentVia')} <Text fontWeight='bold'>{loginMethod}</Text>.
                                 </Text>
                             </YStack>
                         </XStack>

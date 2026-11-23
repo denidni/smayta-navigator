@@ -10,7 +10,7 @@ import { config, last, first } from '../utils';
 import { formattedAddressFromPlace } from '../utils/location';
 import { toast } from '../utils/toast';
 import MapView, { Marker } from 'react-native-maps';
-import MapViewDirections from 'react-native-maps-directions';
+import RouteDirections from './RouteDirections';
 import LocationMarker from './LocationMarker';
 import DriverMarker from './DriverMarker';
 import useFleetbase from '../hooks/use-fleetbase';
@@ -173,7 +173,7 @@ const LiveOrderRoute = ({
                 </Marker>
 
                 {origin && destination && (
-                    <MapViewDirections
+                    <RouteDirections
                         origin={origin}
                         destination={destination}
                         waypoints={middleWaypoints.map(({ coordinate }) => coordinate)}

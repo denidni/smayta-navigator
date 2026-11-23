@@ -17,6 +17,7 @@ import HeaderButton from '../components/HeaderButton';
 import PlaceMapView from '../components/PlaceMapView';
 import useFleetbase from '../hooks/use-fleetbase';
 
+import { translate } from '../utils/localize';
 const FuelReportScreen = () => {
     const theme = useTheme();
     const navigation = useNavigation();
@@ -42,9 +43,9 @@ const FuelReportScreen = () => {
             }
         };
 
-        Alert.alert('Confirm Deletion', 'Are you sure you want to delete this Fuel Report?', [
-            { text: 'Cancel', style: 'cancel' },
-            { text: 'Delete Fuel Report', onPress: handleDelete },
+        Alert.alert(translate('FuelReportScreen.confirmDeletion'), 'Are you sure you want to delete this Fuel Report?', [
+            { text: translate('FuelReportScreen.cancel'), style: 'cancel' },
+            { text: translate('FuelReportScreen.deleteFuelReport'), onPress: handleDelete },
         ]);
     }, [adapter]);
 
@@ -64,7 +65,7 @@ const FuelReportScreen = () => {
                     <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />
                 </XStack>
             </Portal>
-            <LoadingOverlay visible={isLoading} text='Deleting Fuel Report...' />
+            <LoadingOverlay visible={isLoading} text={translate('FuelReportScreen.deletingFuelReport')} />
             <YStack py='$3' space='$3'>
                 <XStack px='$3' alignItems='center' space='$3'>
                     <YStack alignItems='flex-start'>

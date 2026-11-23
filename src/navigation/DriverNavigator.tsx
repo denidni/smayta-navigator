@@ -52,6 +52,7 @@ import HeaderButton from '../components/HeaderButton';
 import Badge from '../components/Badge';
 import DeviceInfo from 'react-native-device-info';
 
+import { translate } from '../utils/localize';
 const isAndroid = Platform.OS === 'android';
 const importedIconsMap = {
     faHome,
@@ -82,7 +83,7 @@ function createTabScreens() {
         DriverDashboardTab: {
             screen: DriverDashboardTab,
             options: {
-                tabBarLabel: config('DRIVER_DASHBOARD_TAB_LABEL', 'Dash'),
+                tabBarLabel: config('DRIVER_DASHBOARD_TAB_LABEL') || translate('DriverNavigator.dashboardTab'),
             },
         },
         DriverTaskTab: {
@@ -91,7 +92,7 @@ function createTabScreens() {
                 const { allActiveOrders } = useOrderManager();
 
                 return {
-                    tabBarLabel: config('DRIVER_ORDER_TAB_LABEL', 'Orders'),
+                    tabBarLabel: config('DRIVER_ORDER_TAB_LABEL') || translate('DriverNavigator.ordersTab'),
                     tabBarBadge: allActiveOrders.length,
                     tabBarBadgeStyle: {
                         marginRight: -5,
@@ -104,7 +105,7 @@ function createTabScreens() {
             screen: DriverReportTab,
             options: () => {
                 return {
-                    tabBarLabel: config('DRIVER_REPORT_TAB_LABEL', 'Reports'),
+                    tabBarLabel: config('DRIVER_REPORT_TAB_LABEL') || translate('DriverNavigator.reportsTab'),
                 };
             },
         },
@@ -114,7 +115,7 @@ function createTabScreens() {
                 const { unreadCount } = useChat();
 
                 return {
-                    tabBarLabel: config('DRIVER_CHAT_TAB_LABEL', 'Chat'),
+                    tabBarLabel: config('DRIVER_CHAT_TAB_LABEL') || translate('DriverNavigator.chatTab'),
                     tabBarBadge: unreadCount,
                     tabBarBadgeStyle: {
                         marginRight: -5,
@@ -127,7 +128,7 @@ function createTabScreens() {
             screen: DriverAccountTab,
             options: () => {
                 return {
-                    tabBarLabel: config('DRIVER_ACCOUNT_TAB_LABEL', 'Account'),
+                    tabBarLabel: config('DRIVER_ACCOUNT_TAB_LABEL') || translate('DriverNavigator.accountTab'),
                 };
             },
         },
@@ -180,7 +181,7 @@ function getDriverNavigatorHeaderOptions({ route, navigation }) {
         headerTitle: '',
         headerLeft: (props) => (
             <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                Navigator
+                {translate('DriverNavigator.navigator')}
             </Text>
         ),
         headerRight: (props) => <DriverOnlineToggle {...props} />,
@@ -306,7 +307,7 @@ const DriverReportTab = createNativeStackNavigator({
                     headerTitle: '',
                     headerLeft: (props) => (
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Create a new Fuel Report
+                            {translate('DriverNavigator.createANewFuelReport')}
                         </Text>
                     ),
                     headerRight: (props) => <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />,
@@ -370,7 +371,7 @@ const DriverReportTab = createNativeStackNavigator({
                     headerTitle: '',
                     headerLeft: (props) => (
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Create a new Issue
+                            {translate('DriverNavigator.createANewIssue')}
                         </Text>
                     ),
                     headerRight: (props) => <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />,
@@ -511,7 +512,7 @@ const DriverNavigator = createBottomTabNavigator({
                     <XStack alignItems='center'>
                         <Image source={require('../../assets/navigator-icon-transparent.png')} style={{ width: 18, height: 18, marginRight: 5 }} />
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Navigator
+                            {translate('DriverNavigator.navigator')}
                         </Text>
                     </XStack>
                     <Text color='$textSecondary' fontSize={8} ml={25}>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Camera, useCameraDevice, useCodeScanner } from 'react-native-vision-camera';
 
+import { translate } from '../utils/localize';
 type QrCodeScannerProps = {
     onScan: (data: string) => void;
     width?: number | string;
@@ -51,7 +52,7 @@ export const QrCodeScanner: React.FC<QrCodeScannerProps> = ({ onScan, width = '1
     if (!device) {
         return (
             <View style={[styles.noCamera, { width, height }]}>
-                <Text style={{ color: '#fff' }}>No camera available</Text>
+                <Text style={{ color: '#fff' }}>{translate('QrCodeScanner.noCameraAvailable')}</Text>
             </View>
         );
     }

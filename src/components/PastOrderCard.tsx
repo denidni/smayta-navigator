@@ -16,6 +16,7 @@ import MultipleCustomerAvatars from './MultipleCustomerAvatars';
 import LoadingText from './LoadingText';
 import Badge from './Badge';
 
+import { translate } from '../utils/localize';
 const INFO_FIELD_VALUE_MIN_HEIGHT = 30;
 export const PastOrderCard = ({ order, onPress }) => {
     const theme = useTheme();
@@ -85,7 +86,7 @@ export const PastOrderCard = ({ order, onPress }) => {
                             icon={faLocationDot}
                             iconColor={theme['$textPrimary'].val}
                             waypoint={destination.serialize()}
-                            title='Current Destination'
+                            title={translate('PastOrderCard.currentDestination')}
                             titleStyle={{ fontWeight: 'bold', fontSize: 14, textTransform: 'uppercase' }}
                         />
                     </YStack>

@@ -8,6 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNotification } from '../contexts/NotificationContext';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
+import { translate } from '../utils/localize';
 const APP_LINK_PREFIX = config('APP_LINK_PREFIX');
 
 const useOAuth = () => {
@@ -39,7 +40,7 @@ const useOAuth = () => {
 
         try {
             if (!appleAuth.isSupported) {
-                return toast.error('Apple Sign-In is not supported on this device');
+                return toast.error(translate('Useoauth.appleSignInIsNotSupported'));
             }
 
             // Perform Apple Sign-In
@@ -51,7 +52,7 @@ const useOAuth = () => {
 
             const { identityToken, authorizationCode, email, fullName, user: appleUserId } = appleAuthResponse;
             if (!identityToken || !authorizationCode) {
-                return toast.error('Apple Sign-In failed: Missing token or authorization code.');
+                return toast.error(translate('Useoauth.appleSignInFailedMissingToken'));
             }
 
             // Get the user's name

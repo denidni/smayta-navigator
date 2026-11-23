@@ -9,6 +9,7 @@ import { Portal } from '@gorhom/portal';
 import { debounce } from '../utils';
 import { currencies, getCurrency } from '../utils/currencies';
 
+import { translate } from '../utils/localize';
 const MoneyInput = ({
     value: _value,
     onChange,
@@ -179,7 +180,7 @@ const MoneyInput = ({
                     <YStack px='$2'>
                         <BottomSheetTextInput
                             ref={searchInputRef}
-                            placeholder='Search currencies'
+                            placeholder={translate('MoneyInput.searchCurrencies')}
                             onChangeText={setSearchTerm}
                             autoCapitalize='none'
                             autoComplete='off'
