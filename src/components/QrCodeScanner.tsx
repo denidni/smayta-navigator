@@ -19,7 +19,7 @@ export const QrCodeScanner: React.FC<QrCodeScannerProps> = ({ onScan, width = '1
     useEffect(() => {
         (async () => {
             const status = await Camera.requestCameraPermission();
-            if (status !== 'authorized') {
+            if (status !== 'granted' && status !== 'authorized') {
                 console.warn('Camera permission not granted');
             }
         })();

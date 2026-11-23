@@ -1,20 +1,18 @@
 import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { ScrollView, RefreshControl, SafeAreaView, StyleSheet, Alert, Platform } from 'react-native';
 import { Separator, Button, Image, Stack, Text, YStack, XStack, useTheme } from 'tamagui';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPaperPlane, faPenToSquare, faFlagCheckered, faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
+import { faFlagCheckered, faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
 import { BlurView } from '@react-native-community/blur';
 import { PortalHost } from '@gorhom/portal';
-import LaunchNavigator from 'react-native-launch-navigator';
 import FastImage from 'react-native-fast-image';
 import { Order, Place } from '@fleetbase/sdk';
 import { format as formatDate, formatDistance, add } from 'date-fns';
 import { titleize } from 'inflected';
 import { formatCurrency, formatMeters, formatDuration, smartHumanize } from '../utils/format';
-import { restoreFleetbasePlace, getCoordinates } from '../utils/location';
+import { restoreFleetbasePlace } from '../utils/location';
 import { toast } from '../utils/toast';
-import { config, showActionSheet } from '../utils';
 import { useAuth } from '../contexts/AuthContext';
 import { useLocation } from '../contexts/LocationContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -46,6 +44,8 @@ import Spacer from '../components/Spacer';
 import BackButton from '../components/BackButton';
 import SafeSpinner from '../components/SafeSpinner';
 import { SectionHeader, SectionInfoLine, ActionContainer } from '../components/Content';
+import SmaytaStopCard from '../components/SmaytaStopCard';
+import { cashToCollect, formatMoney, stopKind, stopPhone, callPhone, navigateTo, scannedProof, consumeScan } from '../utils/smayta-order';
 
 import { translate } from '../utils/localize';
 const getOrderDestination = (order, adapter) => {
@@ -156,40 +156,33 @@ const OrderScreen = ({ route }) => {
             .map((waypoint) => restoreFleetbasePlace(waypoint, adapter));
     }, [order, adapter]);
 
-    const startNavigation = useCallback(async () => {
-        if (Platform.OS === 'android') {
-            LaunchNavigator.setGoogleApiKey(config('GOOGLE_MAPS_API_KEY'));
-        }
+    // Smayta: la parada actual, qué hay que cobrar y si ya se escaneó el código.
+    const currentStopKind = useMemo(() => stopKind(order, destination), [order, destination]);
+    const currentStopPhone = useMemo(() => stopPhone(order, destination, currentStopKind), [order, destination, currentStopKind]);
+    const cash = useMemo(() => cashToCollect(order), [order]);
+    const [scanTick, setScanTick] = useState(0);
+    const currentScan = useMemo(() => scannedProof(order.id, destination?.id), [order.id, destination?.id, scanTick]);
+    useFocusEffect(
+        useCallback(() => {
+            setScanTick((n) => n + 1);
+        }, [])
+    );
 
-        const apps = await LaunchNavigator.getAvailableApps();
-        const availableApps = Object.keys(apps).filter((appName) => apps[appName] === true);
-
-        showActionSheet({
-            options: [...availableApps.map((appName) => LaunchNavigator.APP_NAMES[appName]), t('common.cancel')],
-            cancelButtonIndex: availableApps.length,
-            onSelect: async (buttonIndex) => {
-                if (buttonIndex === availableApps.length) return;
-
-                const app = availableApps[buttonIndex];
-                const destinationCoordinates = getCoordinates(destination);
-
-                try {
-                    await LaunchNavigator.navigate(destinationCoordinates, {
-                        app,
-                        launchMode: LaunchNavigator.LAUNCH_MODE.TURN_BY_TURN,
-                        destinationName: destination.getAttribute('name') ?? destination.getAttribute('street1'),
-                    });
-                } catch (err) {
-                    console.warn('Error launching navigation:', err);
-                }
-            },
+    const startNavigation = useCallback(() => navigateTo(destination), [destination]);
+    const changeNavigationApp = useCallback(() => navigateTo(destination, { ask: true }), [destination]);
+    const scanCurrentStop = useCallback(() => {
+        navigation.navigate('ProofOfDelivery', {
+            activity: { pod_method: 'scan' },
+            scanOnly: true,
+            order: order.serialize(),
+            waypoint: destination?.serialize ? destination.serialize() : destination,
         });
-    }, [destination]);
+    }, [order, destination, navigation]);
 
     const alertDestinationChanged = (previousDestination, currentDestination, order) => {
         return Alert.alert(
             translate('OrderScreen.waypointCompleted'),
-            `Waypoint activity completed for destination ${previousDestination.getAttribute('address')}. Your current destination is now ${currentDestination.getAttribute('address')}. You can change the destination at anytime by pressing the "Current Destination" button.`,
+            translate('Smayta.destinationChanged', { previous: previousDestination.getAttribute('address'), current: currentDestination.getAttribute('address') }),
             [
                 {
                     text: translate('OrderScreen.continue'),
@@ -258,7 +251,7 @@ const OrderScreen = ({ route }) => {
                 console.warn('Error starting order:', err, err.message);
                 const errorMessage = err.message ?? '';
                 if (errorMessage.startsWith('Order has not been dispatched')) {
-                    return Alert.alert(translate('OrderScreen.orderNotDispatchedYet'), 'This order is not yet dispatched, are you sure you want to continue?', [
+                    return Alert.alert(translate('OrderScreen.orderNotDispatchedYet'), translate('Smayta.notDispatchedContinue'), [
                         {
                             text: translate('OrderScreen.yes'),
                             onPress: () => {
@@ -286,7 +279,7 @@ const OrderScreen = ({ route }) => {
         try {
             const activity = await runWithLoading(order.getNextActivity({ waypoint: destination?.id }), 'nextOrderActivity');
             if (activity.code === 'dispatched') {
-                return Alert.alert(translate('OrderScreen.warning'), 'This order is not yet dispatched, are you sure you want to continue?', [
+                return Alert.alert(translate('OrderScreen.warning'), translate('Smayta.notDispatchedContinue'), [
                     {
                         text: translate('OrderScreen.yes'),
                         onPress: async () => {
@@ -314,11 +307,26 @@ const OrderScreen = ({ route }) => {
     }, [order]);
 
     const sendOrderActivityUpdate = useCallback(
-        async (activity, proof) => {
+        async (activity, proof, options: { cashConfirmed?: boolean } = {}) => {
+            // Smayta: antes de terminar la entrega, confirmar que se ha cobrado el efectivo.
+            if (activity.complete && cash && !options.cashConfirmed && !proof) {
+                return Alert.alert(translate('Smayta.cashConfirmTitle'), translate('Smayta.cashConfirmText', { amount: formatMoney(cash.amount, cash.currency) }), [
+                    { text: translate('Smayta.cashNotYet'), style: 'cancel' },
+                    { text: translate('Smayta.cashCollected'), onPress: () => sendOrderActivityUpdate(activity, proof, { cashConfirmed: true }) },
+                ]);
+            }
+
             setActivityLoading(activity.code);
+
+            // Si ya escaneó el código en esta parada, esa es la prueba.
+            const scanProof = !proof && activity.require_pod ? scannedProof(order.id, destination?.id) : null;
+            if (scanProof) {
+                proof = { id: scanProof };
+            }
 
             if (activity.require_pod && !proof) {
                 activitySheetRef.current?.closeBottomSheet();
+                setActivityLoading(null);
                 return navigation.navigate('ProofOfDelivery', { activity, order: order.serialize(), waypoint: destination.serialize() });
             }
 
@@ -326,14 +334,15 @@ const OrderScreen = ({ route }) => {
             const previousDestination = getOrderDestination(order, adapter);
 
             isUpdatingActivity.current = true;
-            setLoadingOverlayMessage(`Updating Activity: ${activity._resolved_status ?? activity.status}`);
+            setLoadingOverlayMessage(translate('Smayta.updatingStatus', { status: activity._resolved_status ?? activity.status }));
 
             try {
                 const updatedOrder = await runWithLoading(order.updateActivity({ activity, proof: proof?.id }), 'activityUpdate');
                 updateOrder(updatedOrder);
                 setNextActivity([]);
                 setLoadingOverlayMessage(null);
-                toast.success(`Order status updated to: ${activity._resolved_status ?? activity.status}`);
+                toast.success(translate('Smayta.statusUpdated', { status: activity._resolved_status ?? activity.status }));
+                if (scanProof) consumeScan(order.id, destination?.id);
 
                 const currentDestination = getOrderDestination(updatedOrder, adapter);
                 const shouldNotifyUserDestinationChanged = activity.complete && updatedOrder.status !== 'completed' && previousDestination?.id !== currentDestination?.id;
@@ -351,7 +360,7 @@ const OrderScreen = ({ route }) => {
                 activitySheetRef.current?.closeBottomSheet();
             }
         },
-        [order]
+        [order, destination, cash, navigation]
     );
 
     const completeOrder = useCallback(
@@ -374,7 +383,7 @@ const OrderScreen = ({ route }) => {
     );
 
     const handleAdhocAccept = useCallback(async () => {
-        Alert.alert(translate('OrderScreen.acceptAdHocOrder'), 'By accepting this ad-hoc order it will become assigned to you and the order will start immediatley.', [
+        Alert.alert(translate('OrderScreen.acceptAdHocOrder'), translate('Smayta.acceptAdhocText'), [
             {
                 text: translate('OrderScreen.cancel'),
                 style: 'cancel',
@@ -398,7 +407,7 @@ const OrderScreen = ({ route }) => {
     }, [order, driver, setIsAccepting]);
 
     const handleAdhocDismissal = useCallback(() => {
-        Alert.alert(translate('OrderScreen.dismissAdHocOrder'), 'By dimissing this ad-hoc order it will no longer display as an available order.', [
+        Alert.alert(translate('OrderScreen.dismissAdHocOrder'), translate('Smayta.dismissAdhocText'), [
             {
                 text: translate('OrderScreen.cancel'),
                 style: 'cancel',
@@ -544,13 +553,13 @@ const OrderScreen = ({ route }) => {
                     <XStack space='$2' ml={-5}>
                         {isIncomingAdhoc && (
                             <XStack flex={1} space='$2' ml={5}>
-                                <Button onPress={handleAdhocAccept} flex={1} bg='$success' borderWidth={1} borderColor='$successBorder' disabled={isAccepting}>
+                                <Button onPress={handleAdhocAccept} flex={1} height={60} bg='$success' borderWidth={1} borderColor='$successBorder' disabled={isAccepting}>
                                     <Button.Icon>
                                         {isAccepting ? <SafeSpinner color={theme.successText.val} /> : <FontAwesomeIcon icon={faCheck} color={theme.successText.val} />}
                                     </Button.Icon>
                                     <Button.Text color='$successText'>{translate('OrderScreen.acceptOrder')}</Button.Text>
                                 </Button>
-                                <Button onPress={handleAdhocDismissal} flex={1} bg='$error' borderWidth={1} borderColor='$errorBorder' disabled={isAccepting}>
+                                <Button onPress={handleAdhocDismissal} flex={1} height={60} bg='$error' borderWidth={1} borderColor='$errorBorder' disabled={isAccepting}>
                                     <Button.Icon>
                                         <FontAwesomeIcon icon={faBan} color={theme.errorText.val} />
                                     </Button.Icon>
@@ -558,31 +567,20 @@ const OrderScreen = ({ route }) => {
                                 </Button>
                             </XStack>
                         )}
-                        {isNotStarted && (
-                            <Button onPress={() => startOrder()} bg='$success' borderWidth={1} borderColor='$successBorder'>
-                                <Button.Icon>
-                                    {isLoading('startOrder') ? <SafeSpinner color={theme.successText.val} /> : <FontAwesomeIcon icon={faFlagCheckered} color={theme.successText.val} />}
-                                </Button.Icon>
-                                <Button.Text color='$successText'>{translate('OrderScreen.startOrder')}</Button.Text>
-                            </Button>
-                        )}
-                        {order.isInProgress && (
-                            <Button onPress={() => updateOrderActivity()} bg='$success' borderWidth={1} borderColor='$successBorder'>
-                                <Button.Icon>
-                                    {isLoading('nextOrderActivity') ? <SafeSpinner color={theme.successText.val} /> : <FontAwesomeIcon icon={faPenToSquare} color={theme.infoText.val} />}
-                                </Button.Icon>
-                                <Button.Text color='$successText'>{translate('OrderScreen.updateActivity')}</Button.Text>
-                            </Button>
-                        )}
-                        {isNavigatable && (
-                            <Button onPress={startNavigation} bg='$info' borderWidth={1} borderColor='$infoBorder'>
-                                <Button.Icon>
-                                    {isLoading('startNavigation') ? <SafeSpinner color={theme.infoText.val} /> : <FontAwesomeIcon icon={faPaperPlane} color={theme.infoText.val} />}
-                                </Button.Icon>
-                                <Button.Text color='$infoText'>{translate('OrderScreen.startNavigation')}</Button.Text>
-                            </Button>
-                        )}
                     </XStack>
+                    {!isIncomingAdhoc && destination && (isNavigatable || isNotStarted) && (
+                        <SmaytaStopCard
+                            destination={destination}
+                            kind={currentStopKind}
+                            phone={currentStopPhone}
+                            cash={cash}
+                            scanned={!!currentScan}
+                            onNavigate={startNavigation}
+                            onChangeNavigationApp={changeNavigationApp}
+                            onCall={() => callPhone(currentStopPhone)}
+                            onScan={scanCurrentStop}
+                        />
+                    )}
                     {!isIncomingAdhoc && (
                         <YStack>
                             <CurrentDestinationSelect
@@ -603,7 +601,14 @@ const OrderScreen = ({ route }) => {
                     <Separator />
                     <SectionInfoLine title={translate('OrderScreen.trackingNumber')} value={order.getAttribute('tracking_number.tracking_number')} />
                     <Separator />
-                    <SectionInfoLine title={translate('OrderScreen.proofOfDelivery')} value={order.getAttribute('pod_required') ? titleize(order.getAttribute('pod_method')) : 'N/A'} />
+                    <SectionInfoLine
+                        title={translate('OrderScreen.proofOfDelivery')}
+                        value={
+                            order.getAttribute('pod_required')
+                                ? translate(`Smayta.pod.${order.getAttribute('pod_method')}`, { defaultValue: titleize(order.getAttribute('pod_method')) })
+                                : '-'
+                        }
+                    />
                     <Separator />
                     <SectionInfoLine title={translate('OrderScreen.type')} value={titleize(order.getAttribute('type'))} />
                     <Separator />
@@ -686,6 +691,29 @@ const OrderScreen = ({ route }) => {
                 </YStack>
                 <Spacer height={200} />
             </ScrollView>
+            {!isIncomingAdhoc && (isNotStarted || order.isInProgress) && (
+                <YStack position='absolute' left={0} right={0} bottom={0} px='$3' pt='$3' pb='$5' bg='$background' borderTopWidth={1} borderColor='$borderColor'>
+                    {isNotStarted ? (
+                        <Button height={60} onPress={() => startOrder()} bg='$success' borderWidth={1} borderColor='$successBorder' disabled={isLoading('startOrder')}>
+                            <Button.Icon>
+                                {isLoading('startOrder') ? <SafeSpinner color={theme.successText.val} /> : <FontAwesomeIcon icon={faFlagCheckered} color={theme.successText.val} size={20} />}
+                            </Button.Icon>
+                            <Button.Text color='$successText' fontSize='$6' fontWeight='bold'>
+                                {translate('OrderScreen.startOrder')}
+                            </Button.Text>
+                        </Button>
+                    ) : (
+                        <Button height={60} onPress={() => updateOrderActivity()} bg='$success' borderWidth={1} borderColor='$successBorder' disabled={isLoading('nextOrderActivity')}>
+                            <Button.Icon>
+                                {isLoading('nextOrderActivity') ? <SafeSpinner color={theme.successText.val} /> : <FontAwesomeIcon icon={faCheck} color={theme.successText.val} size={20} />}
+                            </Button.Icon>
+                            <Button.Text color='$successText' fontSize='$6' fontWeight='bold'>
+                                {translate(currentStopKind === 'pickup' ? 'Smayta.nextStepPickup' : currentStopKind === 'dropoff' ? 'Smayta.nextStepDropoff' : 'Smayta.nextStep')}
+                            </Button.Text>
+                        </Button>
+                    )}
+                </YStack>
+            )}
             {isOldAndroid ? (
                 <YStack />
             ) : (
