@@ -4,7 +4,9 @@ import { SafeAreaView, Image, StyleSheet, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spinner, Stack, Text, YStack, XStack, useTheme, Button } from 'tamagui';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPlug } from '@fortawesome/free-solid-svg-icons';
+import { faPlug, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { useLanguage } from '../contexts/LanguageContext';
+import { showActionSheet } from '../utils';
 import { toast, ToastPosition } from '@backpackapp-io/react-native-toast';
 import { titleize } from '../utils/format';
 import { navigatorConfig, config } from '../utils';
@@ -19,6 +21,21 @@ const LoginScreen = () => {
     const insets = useSafeAreaInsets();
     const windowHeight = Dimensions.get('window').height;
     const { login, loginSupported, loading } = useOAuth();
+    const { t, language, languages, setLocale } = useLanguage();
+
+    // Elegir idioma antes de entrar (español, francés, árabe o inglés).
+    const handleLanguageSelect = () => {
+        const options = [...languages.map((lang) => lang.native), t('common.cancel')];
+        showActionSheet({
+            options,
+            cancelButtonIndex: options.length - 1,
+            onSelect: (buttonIndex) => {
+                if (buttonIndex !== undefined && buttonIndex < languages.length) {
+                    setLocale(languages[buttonIndex].code);
+                }
+            },
+        });
+    };
 
     const handlePhoneLogin = () => {
         navigation.navigate('PhoneLogin');
@@ -49,11 +66,26 @@ const LoginScreen = () => {
             <SafeAreaView style={{ flex: 1 }}>
                 <YStack flex={1} justifyContent='flex-end' alignItems='center' space='$3' px='$5' pb='$6'>
                     <PhoneLoginButton onPress={handlePhoneLogin} />
+                    <Button size='$5' width='100%' bg='transparent' borderWidth={1} borderColor='white' onPress={() => navigation.navigate('SmaytaDriver')} rounded>
+                        <Button.Text color='white' fontWeight='bold'>
+                            {t('Smayta.login.becomeDriver')}
+                        </Button.Text>
+                    </Button>
                     <Text color='$textSecondary' fontSize='$2'>
                         v{DeviceInfo.getVersion()} #{DeviceInfo.getBuildNumber()}
                     </Text>
                 </YStack>
             </SafeAreaView>
+            <YStack position='absolute' top={0} left={0} pt={insets.top}>
+                <Button onPress={handleLanguageSelect} bg='transparent'>
+                    <Button.Icon>
+                        <FontAwesomeIcon icon={faGlobe} color='white' />
+                    </Button.Icon>
+                    <Button.Text color='white' fontWeight='bold'>
+                        {language?.native ?? language?.code}
+                    </Button.Text>
+                </Button>
+            </YStack>
             <YStack position='absolute' top={0} right={0} pt={insets.top}>
                 <Button onPress={handleOpenInstanceLink} bg='transparent'>
                     <Button.Icon>
