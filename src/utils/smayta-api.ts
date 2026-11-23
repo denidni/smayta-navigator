@@ -163,7 +163,7 @@ export type CashDeposit = {
 export type CashAccount = { name: string; bank_name: string | null; iban: string; holder: string };
 export type MyCash = { blocked: boolean; blocked_at: string | null; deposits: CashDeposit[]; accounts: Record<string, CashAccount[]> };
 
-export type WalletMovement = { id: string; type: string; amount: number; created_at: string; note: string | null };
+export type WalletMovement = { id: string; type: string; amount: number; created_at: string; source?: 'driver_earnings' | 'transport' | null };
 export type Cartera = {
     wallet: {
         enabled: boolean;

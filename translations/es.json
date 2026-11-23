@@ -635,7 +635,13 @@
             "giftCode": "Código de la tarjeta",
             "redeem": "Cargar en mi cartera",
             "redeemed": "Tarjeta cargada en tu cartera.",
-            "topup": "Recargar la cartera en smayta.es"
+            "topup": "Recargar la cartera en smayta.es",
+            "source": {
+                "driver_earnings": "Ganancias de viajes",
+                "transport": "Transporte",
+                "purchase": "Compra en Smayta",
+                "other": "Recarga o tarjeta regalo"
+            }
         },
         "cash": {
             "title": "Efectivo por ingresar a Smayta",

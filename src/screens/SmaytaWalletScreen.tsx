@@ -139,7 +139,7 @@ const SmaytaWalletScreen = () => {
                         {(wallet.movements ?? []).slice(0, 5).map((m) => (
                             <XStack key={m.id} justifyContent='space-between'>
                                 <Text color='$textSecondary' fontSize='$3' flex={1} numberOfLines={1}>
-                                    {day(m.created_at)} · {m.note ?? m.type}
+                                    {day(m.created_at)} · {translate(`Smayta.wallet.source.${m.source ?? (m.amount < 0 ? 'purchase' : 'other')}`)}
                                 </Text>
                                 <Text color={m.amount < 0 ? '$errorText' : '$successText'} fontSize='$3' fontWeight='bold'>
                                     {money(m.amount, wallet.currency_code)}

@@ -635,7 +635,13 @@
             "giftCode": "Code de la carte",
             "redeem": "Ajouter à mon portefeuille",
             "redeemed": "Carte ajoutée à votre portefeuille.",
-            "topup": "Recharger le portefeuille sur smayta.es"
+            "topup": "Recharger le portefeuille sur smayta.es",
+            "source": {
+                "driver_earnings": "Gains des trajets",
+                "transport": "Transport",
+                "purchase": "Achat sur Smayta",
+                "other": "Recharge ou carte cadeau"
+            }
         },
         "cash": {
             "title": "Espèces à verser à Smayta",

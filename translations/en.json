@@ -635,7 +635,13 @@
             "giftCode": "Card code",
             "redeem": "Add to my wallet",
             "redeemed": "Card added to your wallet.",
-            "topup": "Top up the wallet on smayta.es"
+            "topup": "Top up the wallet on smayta.es",
+            "source": {
+                "driver_earnings": "Trip earnings",
+                "transport": "Transport",
+                "purchase": "Smayta purchase",
+                "other": "Top-up or gift card"
+            }
         },
         "cash": {
             "title": "Cash to deposit to Smayta",

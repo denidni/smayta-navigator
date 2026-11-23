@@ -635,7 +635,13 @@
             "giftCode": "رمز البطاقة",
             "redeem": "شحن محفظتي",
             "redeemed": "تم شحن البطاقة في محفظتك.",
-            "topup": "شحن المحفظة في smayta.es"
+            "topup": "شحن المحفظة في smayta.es",
+            "source": {
+                "driver_earnings": "أرباح المشاوير",
+                "transport": "النقل",
+                "purchase": "شراء من Smayta",
+                "other": "شحن أو بطاقة هدية"
+            }
         },
         "cash": {
             "title": "نقد يجب إيداعه لـ Smayta",
