@@ -7,10 +7,12 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { translate } from '../utils/localize';
 import { toast } from '../utils/toast';
 import { smayta, type PhotoFile } from '../utils/smayta-api';
-import { BigButton, Card, Chips, pickPhoto, smaytaErrorMessage } from '../components/SmaytaUi';
+import { BigButton, Card, Chips, Field, pickPhoto, smaytaErrorMessage } from '../components/SmaytaUi';
 
 /** Documentos que acepta Smayta según el país del documento (docs/identidad.md del repo de Smayta). */
 const DOCUMENT_TYPES: Record<string, string[]> = { ES: ['dni', 'nie', 'passport'], DZ: ['cni', 'passport'] };
+/** Países en los que hay que escribir el número de identificación nacional (NIN argelino, 18 cifras). */
+const NIN_COUNTRIES = ['DZ'];
 
 /**
  * Verificación de identidad: foto del documento (por las dos caras, salvo el
@@ -27,8 +29,12 @@ const SmaytaIdentityScreen = ({ route }) => {
     const [selfie, setSelfie] = useState<PhotoFile | null>(null);
     const [consent, setConsent] = useState(false);
     const [busy, setBusy] = useState(false);
+    const [nin, setNin] = useState('');
     const needsBack = documentType !== 'passport';
-    const ready = front && (!needsBack || back) && selfie && consent;
+    const askNin = NIN_COUNTRIES.includes(country);
+    const ninDigits = nin.replace(/[\s.-]/g, '');
+    const ninOk = !askNin || /^\d{18}$/.test(ninDigits);
+    const ready = front && (!needsBack || back) && selfie && consent && ninOk;
 
     const changeCountry = (c: string) => {
         setCountry(c);
@@ -38,7 +44,7 @@ const SmaytaIdentityScreen = ({ route }) => {
     const submit = async () => {
         setBusy(true);
         try {
-            await smayta.submitIdentity({ country, document_type: documentType, front: front!, back: needsBack ? back : null, selfie: selfie! });
+            await smayta.submitIdentity({ country, document_type: documentType, nin: askNin ? ninDigits : null, front: front!, back: needsBack ? back : null, selfie: selfie! });
             toast.success(translate('Smayta.identity.sent'));
             navigation.goBack();
         } catch (err) {
@@ -81,6 +87,19 @@ const SmaytaIdentityScreen = ({ route }) => {
                     {translate('Smayta.identity.documentType')}
                 </Text>
                 <Chips options={types.map((t) => ({ value: t, label: translate(`Smayta.identity.types.${t}`) }))} value={documentType} onChange={setDocumentType} />
+
+                {askNin && (
+                    <Field
+                        label={translate('Smayta.identity.nin')}
+                        hint={translate(nin.length > 0 && !ninOk ? 'Smayta.identity.ninInvalid' : 'Smayta.identity.ninHint')}
+                        value={nin}
+                        onChangeText={setNin}
+                        keyboardType='number-pad'
+                        maxLength={24}
+                        placeholder='000000000000000000'
+                        autoCorrect={false}
+                    />
+                )}
 
                 <PhotoStep
                     label={translate(needsBack ? 'Smayta.identity.front' : 'Smayta.identity.passportPage')}

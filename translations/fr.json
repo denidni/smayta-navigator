@@ -610,7 +610,10 @@
                 "rejected": "Nous n’avons pas pu vérifier votre identité. Consultez le motif dans l’e-mail et renvoyez-la.",
                 "expired": "Votre document a expiré. Envoyez le nouveau.",
                 "missing": "Avant votre activation, envoyez votre pièce d’identité et un selfie."
-            }
+            },
+            "nin": "Numéro d'identification national (NIN)",
+            "ninHint": "Les 18 chiffres de « رقم التعريف الوطني » au recto de votre CNI biométrique (pas le numéro de carte à 9 chiffres).",
+            "ninInvalid": "Le NIN comporte 18 chiffres."
         },
         "wallet": {
             "title": "Solde et portefeuille",

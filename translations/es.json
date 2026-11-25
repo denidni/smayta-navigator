@@ -610,7 +610,10 @@
                 "rejected": "No hemos podido verificar tu identidad. Revisa el motivo en el correo y envíala de nuevo.",
                 "expired": "Tu documento ha caducado. Envía el nuevo.",
                 "missing": "Antes de activarte, envía tu documento de identidad y un selfie."
-            }
+            },
+            "nin": "Número de identificación nacional (NIN)",
+            "ninHint": "Las 18 cifras de «رقم التعريف الوطني» en el anverso de tu CNI biométrica (no es el número de la tarjeta de 9 cifras).",
+            "ninInvalid": "El NIN tiene 18 cifras."
         },
         "wallet": {
             "title": "Saldo y cartera",

@@ -251,11 +251,13 @@ export const smayta = {
         return identity;
     },
 
-    async submitIdentity(input: { country: string; document_type: string; front: PhotoFile; back: PhotoFile | null; selfie: PhotoFile }): Promise<IdentityView> {
+    async submitIdentity(input: { country: string; document_type: string; nin?: string | null; front: PhotoFile; back: PhotoFile | null; selfie: PhotoFile }): Promise<IdentityView> {
         const form = new FormData();
         form.append('country', input.country);
         form.append('document_type', input.document_type);
         form.append('consent', 'true');
+        // Argelia: el NIN (18 cifras del anverso de la CNI), que no va en la MRZ.
+        if (input.nin) form.append('nin', input.nin);
         form.append('front', input.front as any);
         if (input.back) form.append('back', input.back as any);
         form.append('selfie', input.selfie as any);

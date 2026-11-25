@@ -610,7 +610,10 @@
                 "rejected": "We could not verify your identity. Check the reason in the email and send it again.",
                 "expired": "Your document has expired. Send the new one.",
                 "missing": "Before you are activated, send your identity document and a selfie."
-            }
+            },
+            "nin": "National identification number (NIN)",
+            "ninHint": "The 18 digits next to «رقم التعريف الوطني» on the front of your biometric CNI (not the 9-digit card number).",
+            "ninInvalid": "The NIN has 18 digits."
         },
         "wallet": {
             "title": "Balance and wallet",
