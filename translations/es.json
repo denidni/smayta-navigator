@@ -477,7 +477,9 @@
             "session": "Tu sesión de Smayta ha caducado. Vuelve a entrar.",
             "tooMany": "Demasiados intentos. Espera un poco y vuelve a probar.",
             "generic": "Algo ha fallado. Vuelve a intentarlo.",
-            "login": "Correo o contraseña incorrectos."
+            "login": "Correo o contraseña incorrectos.",
+            "ninMissing": "Escribe tu número de identificación nacional (NIN): las 18 cifras del anverso de tu CNI.",
+            "ninFormat": "Escribe un NIN válido: 18 cifras."
         },
         "photo": {
             "camera": "Hacer foto",
@@ -613,7 +615,7 @@
             },
             "nin": "Número de identificación nacional (NIN)",
             "ninHint": "Las 18 cifras de «رقم التعريف الوطني» en el anverso de tu CNI biométrica (no es el número de la tarjeta de 9 cifras).",
-            "ninInvalid": "El NIN tiene 18 cifras."
+            "ninInvalid": "Escribe un NIN válido: 18 cifras."
         },
         "wallet": {
             "title": "Saldo y cartera",

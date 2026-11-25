@@ -32,8 +32,8 @@ const SmaytaIdentityScreen = ({ route }) => {
     const [nin, setNin] = useState('');
     const needsBack = documentType !== 'passport';
     const askNin = NIN_COUNTRIES.includes(country);
-    const ninDigits = nin.replace(/[\s.-]/g, '');
-    const ninOk = !askNin || /^\d{18}$/.test(ninDigits);
+    const ninDigits = nin.replace(/[\s.\-_/]/g, '');
+    const ninOk = !askNin || (/^\d{18}$/.test(ninDigits) && !/^(\d)\1{17}$/.test(ninDigits));
     const ready = front && (!needsBack || back) && selfie && consent && ninOk;
 
     const changeCountry = (c: string) => {
