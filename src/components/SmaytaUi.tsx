@@ -11,6 +11,9 @@ export function smaytaErrorMessage(err: unknown): string {
         if (err.status === 0) return translate('Smayta.errors.network');
         if (err.status === 401) return translate('Smayta.errors.session');
         if (err.status === 429) return translate('Smayta.errors.tooMany');
+        // NIN argelino (docs/identidad.md del repo de Smayta): la API manda un código.
+        if (err.message.startsWith('SMAYTA_DZ_NIN_FALTA')) return translate('Smayta.errors.ninMissing');
+        if (err.message.startsWith('SMAYTA_DZ_NIN_')) return translate('Smayta.errors.ninFormat');
         return err.message;
     }
     return translate('Smayta.errors.generic');

@@ -477,7 +477,9 @@
             "session": "Your Smayta session has expired. Sign in again.",
             "tooMany": "Too many attempts. Wait a little and try again.",
             "generic": "Something went wrong. Try again.",
-            "login": "Wrong email or password."
+            "login": "Wrong email or password.",
+            "ninMissing": "Type your national identification number (NIN): the 18 digits on the front of your CNI.",
+            "ninFormat": "Type a valid NIN: 18 digits."
         },
         "photo": {
             "camera": "Take a photo",
@@ -610,7 +612,10 @@
                 "rejected": "We could not verify your identity. Check the reason in the email and send it again.",
                 "expired": "Your document has expired. Send the new one.",
                 "missing": "Before you are activated, send your identity document and a selfie."
-            }
+            },
+            "nin": "National identification number (NIN)",
+            "ninHint": "The 18 digits next to «رقم التعريف الوطني» on the front of your biometric CNI (not the 9-digit card number).",
+            "ninInvalid": "Type a valid NIN: 18 digits."
         },
         "wallet": {
             "title": "Balance and wallet",

@@ -477,7 +477,9 @@
             "session": "Votre session Smayta a expiré. Reconnectez-vous.",
             "tooMany": "Trop de tentatives. Patientez un peu et réessayez.",
             "generic": "Une erreur s’est produite. Réessayez.",
-            "login": "E-mail ou mot de passe incorrect."
+            "login": "E-mail ou mot de passe incorrect.",
+            "ninMissing": "Saisissez votre numéro d'identification national (NIN) : les 18 chiffres au recto de votre CNI.",
+            "ninFormat": "Saisissez un NIN valide : 18 chiffres."
         },
         "photo": {
             "camera": "Prendre une photo",
@@ -610,7 +612,10 @@
                 "rejected": "Nous n’avons pas pu vérifier votre identité. Consultez le motif dans l’e-mail et renvoyez-la.",
                 "expired": "Votre document a expiré. Envoyez le nouveau.",
                 "missing": "Avant votre activation, envoyez votre pièce d’identité et un selfie."
-            }
+            },
+            "nin": "Numéro d'identification national (NIN)",
+            "ninHint": "Les 18 chiffres de « رقم التعريف الوطني » au recto de votre CNI biométrique (pas le numéro de carte à 9 chiffres).",
+            "ninInvalid": "Saisissez un NIN valide : 18 chiffres."
         },
         "wallet": {
             "title": "Solde et portefeuille",
