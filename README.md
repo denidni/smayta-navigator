@@ -64,8 +64,31 @@ yarn install
 yarn android   # o: yarn pod:install && yarn ios
 ```
 
-Para Google Play hace falta una cuenta de desarrollador de Google; para la App
-Store, una de Apple.
+## Publicar en Google Play y la App Store
+
+Las cuentas son las de Smayta (Google Play Console «Smayta» y Apple Developer
+de Smayta Holding Group SLU). La guía completa, con las fichas, la privacidad y
+la clasificación de las tres apps de Smayta, está en el repositorio principal:
+`docs/publicar-apps.md`.
+
+- Identificador: `com.smayta.transporte` en Android (`APP_IDENTIFIER`) y en
+  iPhone (`PRODUCT_BUNDLE_IDENTIFIER` del proyecto de Xcode). No se puede
+  cambiar después de publicar.
+- **Android**: `yarn install && cd android && ./gradlew bundleRelease` con la
+  clave de subida en `android/local.properties` (`ANDROID_NAVIGATOR_APP_UPLOAD_*`,
+  ver [RELEASE.md](RELEASE.md)). Sale `android/app/build/outputs/bundle/release/app-release.aab`,
+  que se sube a la prueba interna de Play Console. Google firma la app con su
+  propia clave (Firma de apps de Google Play).
+- **iPhone**: necesita un Mac con Xcode. `yarn pod:install`, abrir
+  `ios/NavigatorApp.xcworkspace`, elegir el equipo de Smayta en «Signing &
+  Capabilities» y Product → Archive → Distribute App → App Store Connect. Los
+  textos de la ficha (es, en, fr, ar) están en `ios/fastlane/metadata`.
+- **Ubicación en segundo plano**: Google pide rellenar la declaración de
+  ubicación en segundo plano con un vídeo corto de la app pidiéndola, y Apple
+  pide explicar en la revisión por qué la usa (seguir el viaje del conductor
+  mientras está de servicio).
+- «Borrar mi cuenta» (cuenta → protección de datos) abre `DELETE_ACCOUNT_URL`,
+  la página de Smayta para pedir el borrado; las dos tiendas lo exigen.
 
 ## Licencia
 

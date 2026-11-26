@@ -1,0 +1,14 @@
+Smayta Transporte est l’application des chauffeurs et livreurs de Smayta en Espagne et en Algérie.
+
+Avec elle, vous pouvez :
+• Recevoir des trajets et des livraisons de clients et de boutiques Smayta près de vous.
+• Voir le point de retrait et la destination sur la carte et lancer la navigation.
+• Scanner les colis et confirmer la livraison par photo, signature ou code.
+• Encaisser en espèces quand le client paie à la livraison et voir ce que vous avez sur vous.
+• Voir vos gains et les transférer dans votre portefeuille Smayta.
+• Vous inscrire comme transporteur, envoyer vos documents et les photos du véhicule et vérifier votre identité.
+• Discuter avec le client et l’équipe Smayta.
+
+Il faut un compte transporteur vérifié pour travailler avec Smayta Transporte. L’application utilise votre position pendant le service pour vous attribuer des trajets proches et permettre au client de suivre la livraison.
+
+L’application est basée sur Fleetbase Navigator (AGPL-3.0) ; son code source est accessible depuis l’application.

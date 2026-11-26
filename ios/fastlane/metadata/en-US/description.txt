@@ -1,1 +1,14 @@
-Enable digital orchestration of your operations using only a smartphone powered navigation. Using Fleetbase Navigato enables real time location tracking of agents or drivers. Navigator also handles route optimisations on the fly, gps navigation, order management, activity updates and provide proof of delivery (QR/Signature/Photo). Custom order flow configurations can be loaded and the app will adapt no matter if transporting food, passengers, parcels, or even freight containers.
+Smayta Transporte is the app for Smayta drivers and couriers in Spain and Algeria.
+
+With it you can:
+• Get trips and deliveries from Smayta customers and stores near you.
+• See pickup and destination on the map and start navigation.
+• Scan parcels and confirm delivery with a photo, signature or code.
+• Collect cash when the customer pays on delivery and see how much you are carrying.
+• See what you have earned and move it to your Smayta wallet.
+• Sign up as a driver, upload your documents and vehicle photos and verify your identity.
+• Chat with the customer and the Smayta team.
+
+You need a verified Smayta driver account to work with Smayta Transporte. The app uses your location while you are on duty to assign nearby trips and to let the customer follow the delivery.
+
+The app is based on Fleetbase Navigator (AGPL-3.0); its source code is linked inside the app.
