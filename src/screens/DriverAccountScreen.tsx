@@ -55,6 +55,17 @@ const DriverAccountScreen = () => {
         }
     };
 
+    // Borrar la cuenta: Apple y Google piden poder pedirlo desde la app. Abre
+    // la página de Smayta «Borrar tu cuenta», que vale también para transportistas.
+    const handleDeleteAccount = async () => {
+        const url = config('DELETE_ACCOUNT_URL', 'https://smayta.es/es/borrar-cuenta');
+        try {
+            await Linking.openURL(url);
+        } catch {
+            console.warn(`Can't open URL: ${url}`);
+        }
+    };
+
     // Código fuente de la app (AGPL-3.0: hay que ofrecerlo a quien la usa).
     const handleOpenSourceCode = async () => {
         const url = config('SOURCE_CODE_URL', 'https://github.com/denidni/smayta-navigator');
@@ -313,6 +324,11 @@ const DriverAccountScreen = () => {
                 </Text>
             ),
             onPress: handleOpenSourceCode,
+        },
+        {
+            title: t('AccountScreen.deleteAccount'),
+            rightComponent: null,
+            onPress: handleDeleteAccount,
         },
         // {
         //     title: t('AccountScreen.tracking'),

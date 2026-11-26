@@ -1,0 +1,14 @@
+Smayta Transporte es la app de los conductores y repartidores de Smayta en España y Argelia.
+
+Con ella puedes:
+• Recibir viajes y entregas de clientes y tiendas de Smayta cerca de ti.
+• Ver la recogida y el destino en el mapa y abrir la navegación.
+• Escanear los paquetes y confirmar la entrega con foto, firma o código.
+• Cobrar en efectivo cuando el cliente paga al recibir y ver lo que llevas encima.
+• Ver lo que has ganado y pasarlo a tu cartera de Smayta.
+• Darte de alta como transportista, subir los documentos y las fotos del vehículo y verificar tu identidad.
+• Hablar con el cliente y con el equipo de Smayta.
+
+Para trabajar con Smayta Transporte necesitas una cuenta de transportista verificada. La app usa tu ubicación mientras estás de servicio para asignarte viajes cercanos y que el cliente vea por dónde va su entrega.
+
+La app está basada en Fleetbase Navigator (AGPL-3.0); su código fuente está en la propia app.
